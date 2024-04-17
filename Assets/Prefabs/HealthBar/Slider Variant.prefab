@@ -216,5 +216,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiElement: {fileID: 4459969760080315255}
-  _ofset: {x: 0, y: -6.12, z: 0}
+  _ofset: {x: 0, y: -7.03, z: 0}
   _healthBarView: {fileID: 6689487697450535238}

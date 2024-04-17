@@ -7,6 +7,7 @@ namespace Car
     public class HealthController : MonoBehaviour, IHealthHandler
     {
         public event Action Died;
+        public event Action Damaged;
         public event Action<float> HealthChanged;
         
         [field:SerializeField]
@@ -41,6 +42,7 @@ namespace Car
         {
             Health = MaxHealth;
             HealthChanged?.Invoke(Health);
+            Damaged?.Invoke();
         }
 
     }

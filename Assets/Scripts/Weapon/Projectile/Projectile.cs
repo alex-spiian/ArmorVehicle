@@ -18,14 +18,18 @@ namespace Weapon.Projectile
         
         private float _damage;
         private float _currentTime;
+        private Rigidbody _rigidbody;
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+        }
 
         private void Attack(Vector3 direction)
         {
             _trailRenderer.Clear();
 
-            var rigidbody = GetComponent<Rigidbody>();
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.AddForce(direction * _speedForce, ForceMode.VelocityChange);
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.AddForce(direction * _speedForce, ForceMode.VelocityChange);
         }
         
         private void Update()

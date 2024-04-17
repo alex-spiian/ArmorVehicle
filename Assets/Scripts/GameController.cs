@@ -29,8 +29,11 @@ namespace DefaultNamespace
 
         private void OnLost()
         {
+            _cameraPositionController.OnGameOver();
             _screensSwitcher.ShowDefeatScreen();
+            _screensSwitcher.ShowSplashScreen();
             _turretController.Block();
+            _levelController.WaitToContinue(OnRestarted);
         }
 
         private void StartGame()

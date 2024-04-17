@@ -1,7 +1,6 @@
-using Health;
 using UnityEngine;
 
-namespace Order
+namespace Health
 {
     public class HealthBarPositionController : MonoBehaviour
     {

@@ -7,8 +7,10 @@ namespace Car
    {
       public event Action CameToFinish;
       public event Action StartedMoving;
+      
       [SerializeField] private Vector3 _finish;
       [SerializeField] private float _speed;
+      
       private bool _isActive;
       private Vector3 _startPosition;
 

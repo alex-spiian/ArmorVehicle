@@ -1,23 +1,19 @@
 using System;
-using Death;
-using DefaultNamespace;
 using Enemy.States;
 using Health;
-using Order;
 using UnityEngine;
 
 namespace Enemy
 {
-    public class Enemy : MonoBehaviour, IMortal
+    public class Enemy : MonoBehaviour
     {
         public event Action<Enemy> Dead;
 
         [field:SerializeField]
-        public CharacterType CharacterType { get; private set; }
-        [field:SerializeField]
         public HealthController HealthController { get; private set; }
-
-        [SerializeField] private int _critDamage;
+        
+        [SerializeField]
+        private int _critDamage;
         
         private StateMachine _stateMachine;
         private HealthBarPositionController _healthBar;
@@ -30,13 +26,11 @@ namespace Enemy
 
             _stateMachine = new StateMachine
             (
-                GetComponent<IdleState>(),
                 GetComponent<FollowingTargetState>(),
                 GetComponent<AttackState>()
             );
             
             _stateMachine.Initialize();
-            _stateMachine.Enter<IdleState>();
         }
 
         public void Initialize(HealthBarPositionController healthBar, RectTransform canvas)

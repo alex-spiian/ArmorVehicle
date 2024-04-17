@@ -1,5 +1,3 @@
-using Cysharp.Threading.Tasks;
-using Enemy;
 using UnityEngine;
 
 namespace Weapon
@@ -17,9 +15,7 @@ namespace Weapon
             {
                 return;
             }
-
             _currentCooldownTime = 0;
-
             Attack();
         }
         protected virtual void Update()

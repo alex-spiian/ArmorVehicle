@@ -7,10 +7,17 @@ namespace Weapon.Projectile
     public class Projectile : MonoBehaviour
     {
         public event Action<Projectile> LifeTimeWasOver;
-        [SerializeField] private TrailRenderer _trailRenderer;
+        [SerializeField]
+        private TrailRenderer _trailRenderer;
+        
+        [SerializeField]
+        private int _lifeTime = 5;
+
+        [SerializeField]
+        private int _speedForce = 150;
+        
         private float _damage;
         private float _currentTime;
-        private int _lifeTime = 5;
 
         private void Attack(Vector3 direction)
         {
@@ -18,7 +25,7 @@ namespace Weapon.Projectile
 
             var rigidbody = GetComponent<Rigidbody>();
             rigidbody.velocity = Vector3.zero;
-            rigidbody.AddForce(direction * 150, ForceMode.VelocityChange);
+            rigidbody.AddForce(direction * _speedForce, ForceMode.VelocityChange);
         }
         
         private void Update()

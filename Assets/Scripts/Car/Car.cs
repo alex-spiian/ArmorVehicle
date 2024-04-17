@@ -1,23 +1,20 @@
 using System;
-using Death;
-using DefaultNamespace;
 using Health;
-using Order;
 using UnityEngine;
 
 namespace Car
 {
-    public class Car : MonoBehaviour, IMortal
+    public class Car : MonoBehaviour
     {
         public event Action Lost; 
         public event Action Won;
         
         [field:SerializeField]
-        public CharacterType CharacterType { get; private set; }
-        [field:SerializeField]
         public HealthController HealthController { get; private set; }
+        
         [SerializeField]
         private MovementController _movementController;
+        
         private HealthBarPositionController _healthBar;
         private HealthBarFactory _healthBarFactory;
         private void Awake()

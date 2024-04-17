@@ -1804,7 +1804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c8e29250f04b9bb67aeffd5b67b2e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
   <HealthController>k__BackingField: {fileID: 1227745224}
   _movementController: {fileID: 1227745219}
 --- !u!114 &1227745224
@@ -1819,8 +1818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbe46f5b4164f65a238caa4c9af68be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
-  <MaxHealth>k__BackingField: 20
+  <MaxHealth>k__BackingField: 100
 --- !u!1001 &1228521986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2651,6 +2649,8 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 4123878400642475164, guid: 66f426b883a2b4178897ae9c8915a22e, type: 3}
   _healthBarPrefab: {fileID: -2559788411450821926, guid: c23f48809d4d04bb48fbbb44b5363d56, type: 3}
   _canvasForHealthBar: {fileID: 473223406}
+  _minEnemyCount: 5
+  _maxEnemyCount: 10
 --- !u!4 &1905921035
 Transform:
   m_ObjectHideFlags: 0

@@ -3,15 +3,14 @@ using Health;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Death
+namespace Enemy
 {
-    public class VisualEffect : MonoBehaviour
+    public class VisualEffector : MonoBehaviour
     {
         [SerializeField] private HealthController _healthController;
         [SerializeField] private GameObject _effectPrefab;
 
         private ObjectPool<GameObject> _effectPool;
-
         private void Start()
         {
             _healthController.Died += OnDied;
@@ -25,7 +24,7 @@ namespace Death
 
         private void OnDied()
         {
-            ShowDeath();
+            ShowDeath().Forget();
         }
         private async UniTask ShowDeath()
         {
@@ -37,6 +36,13 @@ namespace Death
 
         private void ShowDamage()
         {
+            // change character color to white and than back
+        }
+
+        private void OnDestroy()
+        {
+            _healthController.Died -= OnDied;
+            _healthController.Damaged -= ShowDamage;
         }
     }
 }

@@ -5,13 +5,13 @@ namespace Enemy.States
 {
     public class AttackState : MonoBehaviour, IPayLoadedState<IHealthHandler>
     {
-        private StateMachine _stateMachine;
-        private IHealthHandler _healthHandler;
+        [SerializeField]
         private float _damage = 5;
+        private IHealthHandler _healthHandler;
+        
         public void Initialize(StateMachine stateMachine)
         {
             _healthHandler = GetComponent<IHealthHandler>();
-            _stateMachine = stateMachine;
         }
 
         public void OnEnter(IHealthHandler healthHandler)

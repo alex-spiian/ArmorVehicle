@@ -1,6 +1,4 @@
 using System;
-using Death;
-using DefaultNamespace;
 using UnityEngine;
 
 namespace Health
@@ -32,6 +30,7 @@ namespace Health
             }
 
             HealthChanged?.Invoke(Health);
+            Damaged?.Invoke();
 
             if (IsDead)
             {

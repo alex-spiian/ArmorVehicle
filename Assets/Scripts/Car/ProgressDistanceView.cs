@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,6 @@ namespace Car
         [SerializeField] private Slider _slider;
         [SerializeField] private MovementController _movementController;
         private bool _isActive;
-
 
         private void Awake()
         {

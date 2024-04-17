@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Order;
+using Health;
 using UnityEngine;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
@@ -12,6 +12,8 @@ namespace Enemy
         [SerializeField] private Enemy _enemyPrefab;
         [SerializeField] private HealthBarPositionController _healthBarPrefab;
         [SerializeField] private RectTransform _canvasForHealthBar;
+        [SerializeField] private int _minEnemyCount;
+        [SerializeField] private int _maxEnemyCount;
         
         private ObjectPool<Enemy> _enemyPool;
 
@@ -23,11 +25,12 @@ namespace Enemy
                 actionOnRelease: t => t.gameObject.SetActive(false));
         }
 
-        public void Spawn(int count, Road.Road road)
+        public void Spawn(Road.Road road)
         {
-            var positions = GetRandomPositions(road, count);
+            var randomCount = Random.Range(_minEnemyCount, _maxEnemyCount);
+            var positions = GetRandomPositions(road, randomCount);
             
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < randomCount; i++)
             {
                 var enemy = _enemyPool.Get();
 

@@ -1,4 +1,3 @@
-using System;
 using Health;
 using UnityEngine;
 
@@ -9,7 +8,8 @@ namespace Enemy.States
 
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Animator _animator;
-        private float _speed = 40;
+        [SerializeField] private float _speed = 40;
+        
         private bool _isActive;
         private Transform _target;
         private StateMachine _stateMachine;

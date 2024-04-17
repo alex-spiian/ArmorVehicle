@@ -1,19 +1,13 @@
 using System;
-using Death;
-using DefaultNamespace;
 using Health;
 using UnityEngine;
 
 namespace Car
 {
-    public class HealthController : MonoBehaviour, IHealthHandler, IMortal
+    public class HealthController : MonoBehaviour, IHealthHandler
     {
         public event Action Died;
-        public event Action Damaged;
         public event Action<float> HealthChanged;
-        [field:SerializeField] public CharacterType CharacterType { get; private set; }
-
-        private DeathHandler _deathHandler = new(); 
         
         [field:SerializeField]
         public float MaxHealth { get; private set; }
@@ -23,7 +17,6 @@ namespace Car
         public void Awake()
         {
             Health = MaxHealth;
-            Died += _deathHandler.Test;
         }
         public void TakeDamage(float damage)
         {

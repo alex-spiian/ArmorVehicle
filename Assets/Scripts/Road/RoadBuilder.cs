@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Enemy;
 using UnityEngine;
@@ -44,17 +43,16 @@ namespace Road
                 last = item;
             }
 
-            _enemySpawner.Spawn(5, secondLast);
-            _enemySpawner.Spawn(5, last);
+            _enemySpawner.Spawn(secondLast);
+            _enemySpawner.Spawn(last);
         }
         
         private void OnRoadPassed()
         {
-            Debug.Log("OnRoadPassed");
             var road = _roads.Dequeue();
             road.Reset();
             road.transform.position = _lastPosition += _shiftForNextRoad;
-            _enemySpawner.Spawn(5, road);
+            _enemySpawner.Spawn(road);
             _roads.Enqueue(road);
         }
         

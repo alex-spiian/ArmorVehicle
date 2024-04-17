@@ -1,6 +1,3 @@
-using System;
-using Cysharp.Threading.Tasks;
-using Enemy;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -8,9 +5,9 @@ namespace Weapon.Turret
 {
     public class Turret : Weapon
     {
-        //private WeaponEffect _weaponEffect;
         [SerializeField]
         private Projectile.Projectile _projectilePrefab;
+        
         [SerializeField]
         private Transform _projectileAnchor;
         
@@ -35,7 +32,6 @@ namespace Weapon.Turret
 
         private void CreateProjectile()
         {
-            //_weaponEffect.Show();
             var projectile = _projectilePool.Get();
             projectile.LifeTimeWasOver += OnProjectileLifeTimeWasOver;
             projectile.Initialize(_projectileAnchor.position, -transform.up, _damage);

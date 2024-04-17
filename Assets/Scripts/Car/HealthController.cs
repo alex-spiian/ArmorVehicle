@@ -31,6 +31,7 @@ namespace Car
             }
 
             HealthChanged?.Invoke(Health);
+            Damaged?.Invoke();
 
             if (IsDead)
             {
@@ -42,7 +43,6 @@ namespace Car
         {
             Health = MaxHealth;
             HealthChanged?.Invoke(Health);
-            Damaged?.Invoke();
         }
 
     }

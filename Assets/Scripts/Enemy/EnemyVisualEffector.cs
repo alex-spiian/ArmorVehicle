@@ -33,9 +33,12 @@ namespace Enemy
 
         protected override async UniTask ShowDamage()
         {
+            // gotta figure out how to change enemy's color but only of one enemy (not all using the material)
+            
            // _material.color = Color.white;
            // await UniTask.Delay(100);
            // _material.color = _initialColor;
+           await UniTask.DelayFrame(1);
         }
     }
 }

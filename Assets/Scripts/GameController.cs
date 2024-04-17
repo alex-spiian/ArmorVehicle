@@ -1,4 +1,5 @@
 using Camera;
+using Car;
 using Health;
 using Level;
 using ScreenController;
@@ -16,7 +17,8 @@ namespace DefaultNamespace
 
         [SerializeField] private ScreensSwitcher _screensSwitcher;
         [SerializeField] private HealthBarConfig _healthBarConfig;
-        [SerializeField] public RectTransform _canvas;
+        [SerializeField] private RectTransform _canvas;
+        [SerializeField] private CarVisualEffector _carVisualEffector;
 
 
         private void Awake()
@@ -55,6 +57,7 @@ namespace DefaultNamespace
             _cameraPositionController.OnGameStarted();
             _turretController.UnBlock();
             _screensSwitcher.HideAll();
+            _carVisualEffector.OnRestarted();
         }
 
         private void OnDestroy()

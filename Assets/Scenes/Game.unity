@@ -239,6 +239,7 @@ MonoBehaviour:
   _screensSwitcher: {fileID: 473223407}
   _healthBarConfig: {fileID: 11400000, guid: 3e1de0fefb4a94427b38b1ba6ccad11e, type: 2}
   _canvas: {fileID: 404926198}
+  _carVisualEffector: {fileID: 1227745225}
 --- !u!4 &250249161
 Transform:
   m_ObjectHideFlags: 0
@@ -2077,7 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbe46f5b4164f65a238caa4c9af68be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 25
+  <MaxHealth>k__BackingField: 100
 --- !u!114 &1227745225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2093,6 +2094,9 @@ MonoBehaviour:
   _effect: {fileID: 1077937323}
   _speedForce: 20
   _collider: {fileID: 1227745226}
+  _image: {fileID: 1511549648}
+  _fadeDuration: 0.5
+  _targetAlpha: 0.3
 --- !u!65 &1227745226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2441,7 +2445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1511549647
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2474,7 +2478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

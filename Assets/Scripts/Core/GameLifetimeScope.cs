@@ -14,6 +14,7 @@ namespace ArmorVehicle.Core
             builder.RegisterEntryPoint<GameController>();
             
             builder.Register<LevelSwitcher>(Lifetime.Scoped);
+            builder.Register<InputHandler>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.RegisterInstance(_gameControllerConfig);
         }
     }

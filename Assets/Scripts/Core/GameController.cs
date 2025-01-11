@@ -10,12 +10,15 @@ namespace ArmorVehicle.Core
         private LevelSwitcher _levelSwitcher;
         private PlayerController _playerController;
         private GameControllerConfig _gameControllerConfig;
+        private IObjectResolver _container;
 
         [Inject]
         public void Construct(
             GameControllerConfig gameControllerConfig,
-            LevelSwitcher levelSwitcher)
+            LevelSwitcher levelSwitcher,
+            IObjectResolver container)
         {
+            _container = container;
             _gameControllerConfig = gameControllerConfig;
             _levelSwitcher = levelSwitcher;
             _levelSwitcher.Initialize(_gameControllerConfig.LevelList);
@@ -40,7 +43,7 @@ namespace ArmorVehicle.Core
 
         private PlayerController CreatePlayer()
         {
-            return Object.Instantiate(_gameControllerConfig.PlayerControllerPrefab);
+            return _container.Instantiate(_gameControllerConfig.PlayerControllerPrefab);
         }
     }
 }

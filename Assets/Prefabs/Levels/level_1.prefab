@@ -232,56 +232,36 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -31.584198
+        z: -31.637781
       TangentOut:
         x: 0
         y: 0
-        z: 36.262142
+        z: 36.439022
       Rotation:
         value:
           x: 0
-          y: -0.0006862696
+          y: 0.003773615
+          z: 0
+          w: 0.9999929
+    - Position:
+        x: 0
+        y: 0
+        z: 400
+      TangentIn:
+        x: -0
+        y: -0
+        z: -11.763589
+      TangentOut:
+        x: 0
+        y: 0
+        z: 11.763589
+      Rotation:
+        value:
+          x: 0
+          y: -0.0063389824
           z: -0
-          w: 0.99999976
-    - Position:
-        x: -2.075367
-        y: 0
-        z: 399.2114
-      TangentIn:
-        x: -0
-        y: -0
-        z: -36.72253
-      TangentOut:
-        x: 0
-        y: 0
-        z: 32.772762
-      Rotation:
-        value:
-          x: 0
-          y: 0.0039214953
-          z: 0
-          w: 0.9999924
-    - Position:
-        x: 2.2246327
-        y: 0
-        z: 492.2114
-      TangentIn:
-        x: -0
-        y: -0
-        z: -9.309936
-      TangentOut:
-        x: 0
-        y: 0
-        z: 9.309936
-      Rotation:
-        value:
-          x: 0
-          y: 0.02309977
-          z: 0
-          w: 0.9997332
+          w: 0.99998
     m_MetaData:
-    - Mode: 0
-      Tension: 0.5
     - Mode: 0
       Tension: 0.5
     - Mode: 0
@@ -465,8 +445,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Centerpoint: {fileID: 8941237920866728825}
   Size: {x: 30, y: 100}
-  MinEnemies: 1
-  MaxEnemies: 3
 --- !u!4 &5237651591515588439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8495618905258016757, guid: 8a5546d604aa6441eb0e641277fc2a1e,
@@ -583,8 +561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Centerpoint: {fileID: 1070507829118639062}
   Size: {x: 30, y: 100}
-  MinEnemies: 1
-  MaxEnemies: 3
 --- !u!4 &4206781968902039544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8495618905258016757, guid: 8a5546d604aa6441eb0e641277fc2a1e,
@@ -781,8 +757,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Centerpoint: {fileID: 2316673724739025260}
   Size: {x: 30, y: 100}
-  MinEnemies: 1
-  MaxEnemies: 3
 --- !u!4 &2316673724739025260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4709860014044971995, guid: 8a5546d604aa6441eb0e641277fc2a1e,
@@ -893,8 +867,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Centerpoint: {fileID: 2857820177723572058}
   Size: {x: 30, y: 100}
-  MinEnemies: 1
-  MaxEnemies: 3
 --- !u!4 &2857820177723572058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4709860014044971995, guid: 8a5546d604aa6441eb0e641277fc2a1e,

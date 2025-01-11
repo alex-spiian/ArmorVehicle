@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -13,10 +14,16 @@ namespace ArmorVehicle.Player
         private float _distanceAlongSpline;
         private float _splineLength;
         private bool _canMove;
+        private Action<bool> _levelFinishedCallBack;
+        private Vector3 _finishPosition;
 
-        public void Initialize(SplineContainer splineContainer)
+        public void Initialize(SplineContainer splineContainer, Vector3 finishPosition, Action<bool> levelFinishedCallBack)
         {
+            _levelFinishedCallBack = levelFinishedCallBack;
+            _finishPosition = finishPosition;
             _splineContainer = splineContainer;
+            _splineLength = _splineContainer.CalculateLength();
+            
             _canMove = true;
         }
 
@@ -42,6 +49,7 @@ namespace ArmorVehicle.Player
             transform.position = new Vector3(position.x, position.y, position.z);
         
             HandleRotation(tangent);
+            HandleDistanceToFinish();
         }
 
         private void HandleRotation(float3 tangent)
@@ -52,6 +60,16 @@ namespace ArmorVehicle.Player
                     new Vector3(tangent.x, 0f, tangent.z)
                 );
                 transform.rotation = targetRotation;
+            }
+        }
+
+        private void HandleDistanceToFinish()
+        {
+            const float threshold = 0.5f;
+            if (Vector3.Distance(transform.position, _finishPosition) <= threshold)
+            {
+                _levelFinishedCallBack?.Invoke(true);
+                Stop();
             }
         }
     }

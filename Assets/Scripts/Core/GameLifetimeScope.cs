@@ -9,6 +9,7 @@ namespace ArmorVehicle.Core
         {
             base.Configure(builder);
 
+            builder.Register<LevelSwitcher>(Lifetime.Scoped);
             builder.RegisterEntryPoint<BootstrapEntryPoint>();
         }
     }

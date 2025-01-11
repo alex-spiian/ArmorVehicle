@@ -170,10 +170,8 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  _enemySpawnerConfig: {fileID: 11400000, guid: 2d998ae422e2f4f7eb2ebf95bc1000d7,
+  _gameControllerConfig: {fileID: 11400000, guid: c35162b24b1e74238b8044079bbf5fa6,
     type: 2}
-  _levelList: {fileID: 11400000, guid: 3236ac03d290341d0adb667e00fd2099, type: 2}
-  _playerController: {fileID: 1917756326643570540}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,224 +339,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1395367504
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1395367506}
-  - component: {fileID: 1395367505}
-  m_Layer: 0
-  m_Name: PathSpline (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1395367505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395367504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_EditModeType: 1
-    m_Knots: []
-    m_MetaData: []
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Splines:
-  - m_EditModeType: 1
-    m_Knots:
-    - Position:
-        x: 0.02463296
-        y: 0
-        z: -0.38860035
-      TangentIn:
-        x: -0
-        y: -0
-        z: -6.5897365
-      TangentOut:
-        x: 0
-        y: 0
-        z: 6.5897365
-      Rotation:
-        value:
-          x: 0
-          y: -0.018535282
-          z: -0
-          w: 0.9998282
-    - Position:
-        x: -2.4178
-        y: 0
-        z: 65.46348
-      TangentIn:
-        x: -0
-        y: -0
-        z: -21.561594
-      TangentOut:
-        x: 0
-        y: 0
-        z: 20.85149
-      Rotation:
-        value:
-          x: 0
-          y: 0.010508883
-          z: 0
-          w: 0.9999448
-    - Position:
-        x: 2.4524722
-        y: 0
-        z: 126.89907
-      TangentIn:
-        x: -0
-        y: -0
-        z: -20.921133
-      TangentOut:
-        x: 0
-        y: 0
-        z: 21.800467
-      Rotation:
-        value:
-          x: 0
-          y: 0.006981169
-          z: 0
-          w: 0.9999757
-    - Position:
-        x: -0.97115886
-        y: 0
-        z: 193.72922
-      TangentIn:
-        x: -0
-        y: -0
-        z: -23.854816
-      TangentOut:
-        x: 0
-        y: 0
-        z: 27.460886
-      Rotation:
-        value:
-          x: 0
-          y: -0.005852854
-          z: -0
-          w: 0.99998295
-    - Position:
-        x: 1.4913536
-        y: 0
-        z: 282.37357
-      TangentIn:
-        x: -0
-        y: -0
-        z: -31.584198
-      TangentOut:
-        x: 0
-        y: 0
-        z: 36.262142
-      Rotation:
-        value:
-          x: 0
-          y: -0.0006862696
-          z: -0
-          w: 0.99999976
-    - Position:
-        x: -2.075367
-        y: 0
-        z: 399.2114
-      TangentIn:
-        x: -0
-        y: -0
-        z: -36.72253
-      TangentOut:
-        x: 0
-        y: 0
-        z: 32.772762
-      Rotation:
-        value:
-          x: 0
-          y: 0.0039214953
-          z: 0
-          w: 0.9999924
-    - Position:
-        x: 2.2246327
-        y: 0
-        z: 492.2114
-      TangentIn:
-        x: -0
-        y: -0
-        z: -9.309936
-      TangentOut:
-        x: 0
-        y: 0
-        z: 9.309936
-      Rotation:
-        value:
-          x: 0
-          y: 0.02309977
-          z: 0
-          w: 0.9997332
-    m_MetaData:
-    - Mode: 0
-      Tension: 0.5
-    - Mode: 0
-      Tension: 0.5
-    - Mode: 0
-      Tension: 0.5
-    - Mode: 0
-      Tension: 0.5
-    - Mode: 0
-      Tension: 0.5
-    - Mode: 0
-      Tension: 0.5
-    - Mode: 0
-      Tension: 0.5
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Knots:
-    m_KnotsLink: []
---- !u!4 &1395367506
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395367504}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.37536705, y: 0, z: 5.0886}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1285475995749010896 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5266189983645925799, guid: bfe358b7c671a44099aa7dcc44be1a43,
-    type: 3}
-  m_PrefabInstance: {fileID: 1641276232027142272}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1641276232027142272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -567,20 +347,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2279421073126746505, guid: bfe358b7c671a44099aa7dcc44be1a43,
-        type: 3}
-      propertyPath: _speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2279421073126746505, guid: bfe358b7c671a44099aa7dcc44be1a43,
-        type: 3}
-      propertyPath: _splineContainer
-      value: 
-      objectReference: {fileID: 1395367505}
     - target: {fileID: 5266189983645925799, guid: bfe358b7c671a44099aa7dcc44be1a43,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266189983645925799, guid: bfe358b7c671a44099aa7dcc44be1a43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6874776474290454354, guid: bfe358b7c671a44099aa7dcc44be1a43,
         type: 3}
@@ -635,37 +410,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5266189983645925799, guid: bfe358b7c671a44099aa7dcc44be1a43,
-        type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1917756326643570540}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfe358b7c671a44099aa7dcc44be1a43, type: 3}
---- !u!114 &1917756326643570539 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2279421073126746505, guid: bfe358b7c671a44099aa7dcc44be1a43,
-    type: 3}
-  m_PrefabInstance: {fileID: 1641276232027142272}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285475995749010896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 275880d4651a4190b458256c091f5047, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1917756326643570540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285475995749010896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9aac451ca5f41659ac2ec5e28d5231f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementController: {fileID: 1917756326643570539}
 --- !u!1001 &4391695539149486421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -682,7 +428,7 @@ PrefabInstance:
     - target: {fileID: 1124570619053571136, guid: 5065f1dc19d094ae7b4c75d73b5ac776,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4477709788976772436, guid: 5065f1dc19d094ae7b4c75d73b5ac776,
         type: 3}
@@ -819,7 +565,6 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 359427583}
-  - {fileID: 1395367506}
   - {fileID: 1641276232027142272}
   - {fileID: 4391695539149486421}
   - {fileID: 5435627017445114729}

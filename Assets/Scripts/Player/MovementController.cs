@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 
-namespace ArmorVehicle.Player
+namespace ArmorVehicle
 {
     public class MovementController : MonoBehaviour
     {
@@ -68,8 +68,8 @@ namespace ArmorVehicle.Player
             const float threshold = 0.5f;
             if (Vector3.Distance(transform.position, _finishPosition) <= threshold)
             {
-                _levelFinishedCallBack?.Invoke(true);
                 Stop();
+                _levelFinishedCallBack?.Invoke(true);
             }
         }
     }

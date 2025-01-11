@@ -6,18 +6,15 @@ namespace ArmorVehicle.Core
 {
     public class GameLifetimeScope : LifetimeScope
     {
-        [SerializeField] private EnemySpawnerConfig _enemySpawnerConfig;
-        [SerializeField] private LevelList _levelList;
+        [SerializeField] private GameControllerConfig _gameControllerConfig;
         
         protected override void Configure(IContainerBuilder builder)
         {
             base.Configure(builder);
-
-            builder.RegisterEntryPoint<BootstrapEntryPoint>();
+            builder.RegisterEntryPoint<GameController>();
+            
             builder.Register<LevelSwitcher>(Lifetime.Scoped);
-
-            builder.RegisterInstance(_enemySpawnerConfig);
-            builder.RegisterInstance(_levelList);
+            builder.RegisterInstance(_gameControllerConfig);
         }
     }
 }

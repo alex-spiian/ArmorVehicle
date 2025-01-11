@@ -1,5 +1,4 @@
 using UnityEngine;
-using VContainer;
 
 namespace ArmorVehicle
 {
@@ -10,8 +9,7 @@ namespace ArmorVehicle
 
         private LevelList _levelList;
 
-        [Inject]
-        public void Construct(LevelList levelList)
+        public void Initialize(LevelList levelList)
         {
             _levelList = levelList;
         }
@@ -24,15 +22,14 @@ namespace ArmorVehicle
             }
 
             RemovePrevious();
-            
             Spawn();
             CurrentLevelIndex++;
         }
 
         public void Restart()
         {
-            RemovePrevious();
-            Spawn();
+            CurrentLevelIndex--;
+            Next();
         }
         
         private void Spawn()

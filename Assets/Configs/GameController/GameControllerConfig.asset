@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae488c6144714faaa015e0df39d40670, type: 3}
+  m_Name: GameControllerConfig
+  m_EditorClassIdentifier: 
+  <PlayerControllerPrefab>k__BackingField: {fileID: 4079137805395927357, guid: bfe358b7c671a44099aa7dcc44be1a43,
+    type: 3}
+  <LevelList>k__BackingField: {fileID: 11400000, guid: 3236ac03d290341d0adb667e00fd2099,
+    type: 2}
+  <EnemySpawnerConfig>k__BackingField: {fileID: 11400000, guid: 2d998ae422e2f4f7eb2ebf95bc1000d7,
+    type: 2}

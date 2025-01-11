@@ -1,13 +1,19 @@
 using System;
 using UnityEngine;
 
-namespace ArmorVehicle.Player
+namespace ArmorVehicle
 {
+    [RequireComponent(typeof(MovementController))]
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private MovementController _movementController;
-        
-        public void Initialize(Level level, Action<bool> levelFinishedCallBack)
+         private MovementController _movementController;
+
+         private void Awake()
+         {
+             _movementController = GetComponent<MovementController>();
+         }
+
+         public void Initialize(Level level, Action<bool> levelFinishedCallBack)
         {
             _movementController.Initialize(level.SplineContainer, level.EndPoint.position, levelFinishedCallBack);
         }

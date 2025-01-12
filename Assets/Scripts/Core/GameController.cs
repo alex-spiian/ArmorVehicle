@@ -1,3 +1,4 @@
+using HealthBar;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -16,20 +17,21 @@ namespace ArmorVehicle.Core
         public void Construct(
             GameControllerConfig gameControllerConfig,
             LevelSwitcher levelSwitcher,
+            HealthBarManager healthBarManager,
             IObjectResolver container)
         {
             _container = container;
             _gameControllerConfig = gameControllerConfig;
             _levelSwitcher = levelSwitcher;
             _levelSwitcher.Initialize(_gameControllerConfig.LevelList);
-            _enemySpawner = new EnemySpawner(_gameControllerConfig.EnemySpawnerConfig);
+            _enemySpawner = new EnemySpawner(_gameControllerConfig.EnemySpawnerConfig, healthBarManager);
             _playerController = CreatePlayer();
         }
         
         public void Start()
         {
             _levelSwitcher.Next();
-            _enemySpawner.SpawnEnemiesInZone(_levelSwitcher.CurrentLevel, _levelSwitcher.CurrentLevelIndex);
+            _enemySpawner.Spawn(_levelSwitcher.CurrentLevel, _levelSwitcher.CurrentLevelIndex);
             _playerController.Initialize(_levelSwitcher.CurrentLevel, OnLevelFinished);
         }
 
@@ -37,8 +39,10 @@ namespace ArmorVehicle.Core
         {
             Debug.Log("Victory");
             _levelSwitcher.Restart();
+            _playerController.Restart();
+            
             _playerController.Initialize(_levelSwitcher.CurrentLevel, OnLevelFinished);
-            _enemySpawner.SpawnEnemiesInZone(_levelSwitcher.CurrentLevel, _levelSwitcher.CurrentLevelIndex);
+            _enemySpawner.Spawn(_levelSwitcher.CurrentLevel, _levelSwitcher.CurrentLevelIndex);
         }
 
         private PlayerController CreatePlayer()

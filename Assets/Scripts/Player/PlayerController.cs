@@ -1,4 +1,5 @@
 using System;
+using HealthBar;
 using UnityEngine;
 using VContainer;
 
@@ -13,6 +14,7 @@ namespace ArmorVehicle
         private MovementController _movementController;
         private HealthController _healthController;
         private IInputHandler _inputHandler;
+        private HealthBarManager _healthBarManager;
 
         private void Awake()
         {
@@ -22,8 +24,9 @@ namespace ArmorVehicle
         }
 
         [Inject]
-        public void Construct(IInputHandler inputHandler)
+        public void Construct(IInputHandler inputHandler, HealthBarManager healthBarManager)
         {
+            _healthBarManager = healthBarManager;
             _inputHandler = inputHandler;
         }
 
@@ -32,10 +35,12 @@ namespace ArmorVehicle
             _movementController.Initialize(level.SplineContainer, level.EndPoint.position, levelFinishedCallBack);
             _weaponController.Initialize(_inputHandler);
             _healthController.Initialize(100);
+            _healthBarManager.Spawn(_healthController, HealthBarType.Player);
         }
 
-        public void Disable()
+        public void Restart()
         {
+            _healthBarManager.Remove(_healthController);
             _movementController.Stop();
         }
     }

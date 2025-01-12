@@ -2,6 +2,6 @@ namespace ArmorVehicle
 {
     public interface IHealthHandler : IHealth
     {
-        void TakeDamage(float damage);
+        public void TakeDamage(float damage);
     }
 }

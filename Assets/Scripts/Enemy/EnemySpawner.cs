@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HealthBar;
 using UnityEngine;
 
 namespace ArmorVehicle
@@ -7,13 +8,15 @@ namespace ArmorVehicle
     {
         private readonly EnemySpawnerConfig _enemySpawnerConfig;
         private readonly List<Enemy> _enemies = new();
+        private readonly HealthBarManager _healthBarManager;
 
-        public EnemySpawner(EnemySpawnerConfig enemySpawnerConfig)
+        public EnemySpawner(EnemySpawnerConfig enemySpawnerConfig, HealthBarManager healthBarManager)
         {
+            _healthBarManager = healthBarManager;
             _enemySpawnerConfig = enemySpawnerConfig;
         }
         
-        public void SpawnEnemiesInZone(Level level, int currentLevelNumber)
+        public void Spawn(Level level, int currentLevelNumber)
         {
             RemovePrevious();
             
@@ -34,7 +37,9 @@ namespace ArmorVehicle
                 {
                     var spawnPosition = GetRandomPositionInZone(currentZone);
                     var enemy = Object.Instantiate(_enemySpawnerConfig.EnemyPrefab, spawnPosition, Quaternion.identity);
+                    enemy.Initialize(100);
                     _enemies.Add(enemy);
+                    _healthBarManager.Spawn(enemy.Health, HealthBarType.Enemy);
                 }
             }
         }
@@ -43,6 +48,7 @@ namespace ArmorVehicle
         {
             foreach (var enemy in _enemies)
             {
+                _healthBarManager.Remove(enemy.Health);
                 Object.Destroy(enemy.gameObject);
             }
             

@@ -5,6 +5,7 @@ namespace ArmorVehicle
     [RequireComponent(typeof(HealthController))]
     public class Enemy : MonoBehaviour
     {
+        public IHealth Health => _healthController;
         private HealthController _healthController;
 
         private void Awake()

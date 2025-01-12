@@ -15,6 +15,7 @@ namespace ArmorVehicle
         private Transform _target;
         private IHealth _health;
         private RectTransform _parentRectTransform;
+        private Vector2 _smoothedPosition;
 
         private void Awake()
         {
@@ -23,7 +24,7 @@ namespace ArmorVehicle
             _mainCamera = Camera.main;
         }
         
-        private void Update()
+        private void LateUpdate()
         {
             FollowTarget();
         }
@@ -54,7 +55,8 @@ namespace ArmorVehicle
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _parentRectTransform, pointInScreenSpace, null, out var localPoint);
 
-            _rectTransform.anchoredPosition = localPoint;
+            _smoothedPosition = Vector2.Lerp(_smoothedPosition, localPoint, Time.deltaTime * 10f);
+            _rectTransform.anchoredPosition = _smoothedPosition;
         }
     }
 }

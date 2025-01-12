@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace HealthBar
+namespace ArmorVehicle
 {
     [Serializable]
     public class HealthBarData

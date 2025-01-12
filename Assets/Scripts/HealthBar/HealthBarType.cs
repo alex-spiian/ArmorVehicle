@@ -1,4 +1,4 @@
-namespace HealthBar
+namespace ArmorVehicle
 {
     public enum HealthBarType
     {

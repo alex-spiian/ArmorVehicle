@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using HealthBar;
 using UnityEngine;
 
 namespace ArmorVehicle
@@ -10,12 +9,14 @@ namespace ArmorVehicle
         private readonly List<Enemy> _enemies = new();
         private readonly HealthBarManager _healthBarManager;
         private readonly IHealthHandler _target;
+        private readonly MonoBehaviourPool<Enemy> _enemyPool;
 
         public EnemySpawner(EnemySpawnerConfig enemySpawnerConfig, HealthBarManager healthBarManager, IHealthHandler target)
         {
             _target = target;
             _healthBarManager = healthBarManager;
             _enemySpawnerConfig = enemySpawnerConfig;
+            _enemyPool = new MonoBehaviourPool<Enemy>(_enemySpawnerConfig.EnemyPrefab, null);
         }
         
         public void Spawn(Level level, int currentLevelNumber)
@@ -38,7 +39,8 @@ namespace ArmorVehicle
                 for (var j = 0; j < enemyCount; j++)
                 {
                     var spawnPosition = GetRandomPositionInZone(currentZone);
-                    var enemy = Object.Instantiate(_enemySpawnerConfig.EnemyPrefab, spawnPosition, Quaternion.identity);
+                    var enemy = _enemyPool.Take();
+                    enemy.transform.position = spawnPosition;
                     enemy.Initialize(100, _target);
                     _enemies.Add(enemy);
                     _healthBarManager.Spawn(enemy.Health, HealthBarType.Enemy);
@@ -50,8 +52,8 @@ namespace ArmorVehicle
         {
             foreach (var enemy in _enemies)
             {
-                _healthBarManager.Remove(enemy.Health);
-                Object.Destroy(enemy.gameObject);
+                _healthBarManager.Remove(enemy.Health, HealthBarType.Enemy);
+                _enemyPool.Release(enemy);
             }
             
             _enemies.Clear();

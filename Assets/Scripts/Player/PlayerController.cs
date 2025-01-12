@@ -1,5 +1,4 @@
 using System;
-using HealthBar;
 using UnityEngine;
 using VContainer;
 
@@ -42,7 +41,7 @@ namespace ArmorVehicle
 
         public void Restart()
         {
-            _healthBarManager.Remove(_healthController);
+            _healthBarManager.Remove(_healthController, HealthBarType.Player);
             _movementController.Stop();
         }
     }

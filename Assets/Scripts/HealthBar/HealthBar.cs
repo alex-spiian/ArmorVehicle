@@ -2,7 +2,7 @@ using ArmorVehicle;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HealthBar
+namespace ArmorVehicle
 {
     [RequireComponent(typeof(Slider))]
     [RequireComponent(typeof(RectTransform))]
@@ -28,18 +28,18 @@ namespace HealthBar
         {
             FollowTarget();
         }
-
-        private void OnDestroy()
-        {
-            _health.HealthChanged -= OnHealthChanged;
-        }
-
+        
         public void Initialize(IHealth health, RectTransform parentRectTransform)
         {
             _parentRectTransform = parentRectTransform;
             _health = health;
             _target = health.Owner;
             _health.HealthChanged += OnHealthChanged;
+        }
+        
+        public void Reset()
+        {
+            _health.HealthChanged -= OnHealthChanged;
         }
 
         private void OnHealthChanged(float health)

@@ -3,29 +3,51 @@ using System.Linq;
 using ArmorVehicle;
 using UnityEngine;
 
-namespace HealthBar
+namespace ArmorVehicle
 {
     public class HealthBarManager : MonoBehaviour
     {
         [SerializeField] private HealthBarData[] _healthBarData;
         [SerializeField] private RectTransform _canvasRectTransform;
 
-        private Dictionary<IHealth, HealthBar> _healthBars = new();
+        private readonly Dictionary<IHealth, HealthBar> _healthBars = new();
+        private readonly Dictionary<HealthBarType, MonoBehaviourPool<HealthBar>> _healthBarPools = new();
 
         public void Spawn(IHealth health, HealthBarType type)
         {
-            var prefab = GetHealthBar(type);
-            var healthBar = Instantiate(prefab, transform);
+            var pool = GetHealthBarPool(type);
+            var healthBar = pool.Take();
+            
             healthBar.Initialize(health, _canvasRectTransform);
-
             _healthBars.TryAdd(health, healthBar);
         }
 
-        public void Remove(IHealth health)
+        public void Remove(IHealth health, HealthBarType type)
         {
             var healthBar = _healthBars[health];
-            Destroy(healthBar.gameObject);
+            healthBar.Reset();
+            var pool = GetHealthBarPool(type);
+            pool.Release(healthBar);
             _healthBars.Remove(health);
+        }
+        
+        private MonoBehaviourPool<HealthBar> GetHealthBarPool(HealthBarType type)
+        {
+            if (HasCreatedPool(type))
+            {
+                return _healthBarPools[type];
+            }
+
+            var healthBarPrefab = GetHealthBar(type);
+            var healthBarPool = new MonoBehaviourPool<HealthBar>(healthBarPrefab, transform);
+        
+            _healthBarPools.Add(type, healthBarPool);
+            return healthBarPool;
+        }
+
+        private bool HasCreatedPool(HealthBarType type)
+        {
+            return _healthBarPools.ContainsKey(type);
         }
 
         private HealthBar GetHealthBar(HealthBarType type)

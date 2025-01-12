@@ -1,4 +1,3 @@
-using ArmorVehicle;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +34,7 @@ namespace ArmorVehicle
             _health = health;
             _target = health.Owner;
             _health.HealthChanged += OnHealthChanged;
+            OnHealthChanged(_health.Health);
         }
         
         public void Reset()
@@ -44,7 +44,7 @@ namespace ArmorVehicle
 
         private void OnHealthChanged(float health)
         {
-            _slider.value = health / 100;
+            _slider.value = health / _health.MaxHealth;
         }
         
         private void FollowTarget()

@@ -13,12 +13,12 @@ namespace ArmorVehicle
         public Transform Owner => transform;
         public float Health { get; private set; }
 
-        private float _maxHealth;
+        public float MaxHealth { get; private set; }
 
         public void Initialize(float maxHealth)
         {
-            _maxHealth = maxHealth;
-            Health = _maxHealth;
+            MaxHealth = maxHealth;
+            Health = MaxHealth;
             HealthChanged?.Invoke(Health);
         }
         

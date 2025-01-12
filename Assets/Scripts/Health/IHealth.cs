@@ -11,6 +11,7 @@ namespace ArmorVehicle
 
         public bool IsDead { get; }
         public float Health { get; }
+        public float MaxHealth { get; }
         public Transform Owner { get; }
     }
 }

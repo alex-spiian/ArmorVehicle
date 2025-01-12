@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using ArmorVehicle;
 using UnityEngine;
 
 namespace ArmorVehicle
@@ -24,11 +23,16 @@ namespace ArmorVehicle
 
         public void Remove(IHealth health, HealthBarType type)
         {
-            var healthBar = _healthBars[health];
-            healthBar.Reset();
-            var pool = GetHealthBarPool(type);
-            pool.Release(healthBar);
-            _healthBars.Remove(health);
+            if (_healthBars.TryGetValue(health, out var healthBar))
+            {
+                healthBar.Reset();
+                var pool = GetHealthBarPool(type);
+                pool.Release(healthBar);
+            }
+            else
+            {
+                Debug.LogWarning($"HealthBar of {health.Owner.name} with type {type} was not found in dictionary.");
+            }
         }
         
         private MonoBehaviourPool<HealthBar> GetHealthBarPool(HealthBarType type)

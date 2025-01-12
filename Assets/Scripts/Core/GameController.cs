@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using ArmorVehicle.Ui;
 using Cysharp.Threading.Tasks;
@@ -6,7 +7,7 @@ using VContainer.Unity;
 
 namespace ArmorVehicle.Core
 {
-    public class GameController : IStartable
+    public class GameController : IStartable, IDisposable
     {
         private EnemySpawner _enemySpawner;
         private LevelSwitcher _levelSwitcher;
@@ -34,6 +35,12 @@ namespace ArmorVehicle.Core
             _playerController = CreatePlayer();
             _cameraController.Initialize(_playerController.CameraTarget);
             _enemySpawner = new EnemySpawner(_gameControllerConfig.EnemySpawnerConfig, healthBarManager, _playerController.HealthHandler);
+            _playerController.Died += OnLevelFinished;
+        }
+        
+        public void Dispose()
+        {
+            _playerController.Died -= OnLevelFinished;
         }
         
         public async void Start()

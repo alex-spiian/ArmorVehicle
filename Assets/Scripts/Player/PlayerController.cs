@@ -9,6 +9,7 @@ namespace ArmorVehicle
     [RequireComponent(typeof(HealthController))]
     public class PlayerController : MonoBehaviour
     {
+        public Action<bool> Died;
         public IHealthHandler HealthHandler => _healthController;
         public Transform CameraTarget => transform;
         
@@ -24,6 +25,12 @@ namespace ArmorVehicle
             _movementController = GetComponent<MovementController>();
             _weaponController = GetComponent<WeaponController>();
             _healthController = GetComponent<HealthController>();
+            _healthController.Died += OnDied;
+        }
+
+        private void OnDestroy()
+        {
+            _healthController.Died -= OnDied;
         }
 
         [Inject]
@@ -51,6 +58,12 @@ namespace ArmorVehicle
         {
             _healthBarManager.Remove(_healthController, HealthBarType.Player);
             _movementController.Stop();
+        }
+
+        private void OnDied()
+        {
+            Restart();
+            Died?.Invoke(false);
         }
     }
 }

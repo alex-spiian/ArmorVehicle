@@ -7,15 +7,14 @@ namespace ArmorVehicle
 {
     public class MovementController : MonoBehaviour
     {
-        [SerializeField]
-        private float _speed;
+        [SerializeField] private float _speed;
     
+        private Action<bool> _levelFinishedCallBack;
         private SplineContainer _splineContainer;
+        private Vector3 _finishPosition;
         private float _distanceAlongSpline;
         private float _splineLength;
         private bool _canMove;
-        private Action<bool> _levelFinishedCallBack;
-        private Vector3 _finishPosition;
 
         public void Initialize(SplineContainer splineContainer, Vector3 finishPosition, Action<bool> levelFinishedCallBack)
         {
@@ -23,15 +22,16 @@ namespace ArmorVehicle
             _finishPosition = finishPosition;
             _splineContainer = splineContainer;
             _splineLength = _splineContainer.CalculateLength();
-            
-            _canMove = true;
-        }
 
+            Reset();
+            UpdatePosition();
+        }
+        
         public void Stop()
         {
             _canMove = false;
         }
-    
+        
         private void Update()
         {
             if (!_canMove)
@@ -50,6 +50,18 @@ namespace ArmorVehicle
         
             HandleRotation(tangent);
             HandleDistanceToFinish();
+        }
+
+        private void Reset()
+        {
+            _distanceAlongSpline = 0f;
+            _canMove = true;
+        }
+
+        private void UpdatePosition()
+        {
+            var initialPosition = _splineContainer.EvaluatePosition(0f);
+            transform.position = new Vector3(initialPosition.x, initialPosition.y, initialPosition.z);
         }
 
         private void HandleRotation(float3 tangent)

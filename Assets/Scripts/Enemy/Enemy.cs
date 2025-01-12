@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ArmorVehicle
@@ -8,16 +9,25 @@ namespace ArmorVehicle
         public IHealth Health => _healthController;
         private HealthController _healthController;
         private StateMachine _stateMachine;
+        private Action<Enemy> _onEnemyDiedCallBack;
 
         private void Awake()
         {
             _healthController = GetComponent<HealthController>();
         }
 
-        public void Initialize(float maxHealth, IHealthHandler target)
+        public void Initialize(float maxHealth, IHealthHandler target, Action<Enemy> onEnemyDiedCallBack)
         {
+            _onEnemyDiedCallBack = onEnemyDiedCallBack;
             _healthController.Initialize(maxHealth);
             CreateStateMachine(target);
+
+            Health.Died += OnDied;
+        }
+
+        public void Reset()
+        {
+            Health.Died -= OnDied;
         }
 
         private void CreateStateMachine(IHealthHandler target)
@@ -35,6 +45,11 @@ namespace ArmorVehicle
             }
             
             _stateMachine.Enter<IdleState, IHealthHandler>(target);
+        }
+
+        private void OnDied()
+        {
+            _onEnemyDiedCallBack?.Invoke(this);
         }
     }
 }

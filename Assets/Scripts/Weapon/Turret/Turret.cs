@@ -29,16 +29,6 @@ namespace ArmorVehicle
             InputHandler.MouseButtonDown -= TryAttack;
             InputHandler.Rotate -= _rotator.Rotate;
         }
-        
-        public void Block()
-        {
-            CanAttack = false;
-        }
-        
-        public void UnBlock()
-        {
-            CanAttack = true;
-        }
 
         protected override void Attack()
         {

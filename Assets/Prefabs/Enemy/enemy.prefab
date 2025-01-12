@@ -146,6 +146,8 @@ MonoBehaviour:
   - <Type>k__BackingField: 1
     <Effect>k__BackingField: {fileID: 5601036089067188822, guid: 924e772d99fea934f8c7dff7c622e78a,
       type: 3}
+  _flashDuration: 0.1
+  _renderer: {fileID: 4488755829730894546}
 --- !u!143 &3704523312244837351
 CharacterController:
   m_ObjectHideFlags: 0
@@ -278,6 +280,12 @@ PrefabInstance:
 --- !u!95 &740915209991797745 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 116e4f4b158384c5092861f86ac33226,
+    type: 3}
+  m_PrefabInstance: {fileID: 6567048549907695200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &4488755829730894546 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7307535121243759794, guid: 116e4f4b158384c5092861f86ac33226,
     type: 3}
   m_PrefabInstance: {fileID: 6567048549907695200}
   m_PrefabAsset: {fileID: 0}

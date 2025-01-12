@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ArmorVehicle
@@ -46,6 +47,15 @@ namespace ArmorVehicle
                     _healthBarManager.Spawn(enemy.Health, HealthBarType.Enemy);
                 }
             }
+        }
+
+        public void KillAll()
+        {
+            foreach (var enemy in _enemies.ToList()) 
+            {
+                enemy.Kill();
+            }
+            _enemies.Clear();
         }
 
         private void RemovePrevious()

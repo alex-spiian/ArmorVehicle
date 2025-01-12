@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
+using ArmorVehicle.Ui;
 using UnityEngine;
 
-namespace ScreensManager
+namespace ArmorVehicle
 {
     public class ScreensRegister : MonoBehaviour
     {
         private readonly Dictionary<Type, UIScreenSettings> _screenRegistry = new();
         
-        // Registration example
-        // AddScreen<YourScreenType>(isFirstScreen: true);
-        // AddScreen<YourScreenType>(isUnClosable: true);
-        // AddScreen<YourScreenType>();
         private void Register()
         {
-            
+            AddScreen<EmptyScreen>(isFirstScreen: true, isUnClosable: true);
+            AddScreen<TutorialScreen>();
+            AddScreen<VictoryScreen>();
+            AddScreen<DefeatScreen>();
         }
 
         public Dictionary<Type, UIScreenSettings> GetScreenRegistry()

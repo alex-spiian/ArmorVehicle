@@ -4,7 +4,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace ScreensManager
+namespace ArmorVehicle
 {
     [RequireComponent(typeof(ScreensRegister))]
     public class ScreensManager : MonoBehaviour
@@ -65,7 +65,7 @@ namespace ScreensManager
             });
         }
         
-        public static void OpenScreenAsync<UIScreenT, TContext>(TContext screenContext, UniTaskCompletionSource<OpenLevelType> taskCompletionSource) where UIScreenT : UIScreen
+        public static void OpenScreenAsync<UIScreenT, TContext>(TContext screenContext, UniTaskCompletionSource<bool> taskCompletionSource) where UIScreenT : UIScreen
         {
             ExecuteOnScreen<UIScreenT>(screenSettings =>
             {

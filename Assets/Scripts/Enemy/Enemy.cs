@@ -30,6 +30,11 @@ namespace ArmorVehicle
             Health.Died -= OnDied;
         }
 
+        public void Kill()
+        {
+            _healthController.TakeDamage(float.MaxValue);
+        }
+
         private void CreateStateMachine(IHealthHandler target)
         {
             if (_stateMachine == null)

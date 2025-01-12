@@ -8,6 +8,7 @@ namespace ArmorVehicle.Core
     {
         [SerializeField] private GameControllerConfig _gameControllerConfig;
         [SerializeField] private HealthBarManager _healthBarManager;
+        [SerializeField] private ScreensManager _screensManager;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -18,6 +19,7 @@ namespace ArmorVehicle.Core
             builder.Register<InputHandler>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.RegisterInstance(_gameControllerConfig);
             builder.RegisterInstance(_healthBarManager);
+            builder.RegisterInstance(_screensManager);
         }
     }
 }

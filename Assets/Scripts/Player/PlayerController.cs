@@ -16,6 +16,7 @@ namespace ArmorVehicle
         private HealthController _healthController;
         private IInputHandler _inputHandler;
         private HealthBarManager _healthBarManager;
+        private Level _currentLevel;
 
         private void Awake()
         {
@@ -31,12 +32,18 @@ namespace ArmorVehicle
             _inputHandler = inputHandler;
         }
 
-        public void Initialize(Level level, Action<bool> levelFinishedCallBack)
+        public void Initialize(Level level)
         {
-            _movementController.Initialize(level.SplineContainer, level.EndPoint.position, levelFinishedCallBack);
+            _currentLevel = level;
+            transform.position = _currentLevel.StartPoint.position;
             _weaponController.Initialize(_inputHandler);
             _healthController.Initialize(100);
             _healthBarManager.Spawn(_healthController, HealthBarType.Player);
+        }
+
+        public void StartMoving(Action<bool> levelFinishedCallBack)
+        {
+            _movementController.Initialize(_currentLevel.SplineContainer, _currentLevel.EndPoint.position, levelFinishedCallBack);
         }
 
         public void Restart()

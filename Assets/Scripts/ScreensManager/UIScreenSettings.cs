@@ -1,4 +1,4 @@
-namespace ScreensManager
+namespace ArmorVehicle
 {
     public class UIScreenSettings
     {

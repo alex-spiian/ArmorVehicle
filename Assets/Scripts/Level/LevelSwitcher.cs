@@ -18,6 +18,7 @@ namespace ArmorVehicle
         {
             if (CurrentLevelIndex >= _levelList.Levels.Length)
             {
+                Restart();
                 return;
             }
 

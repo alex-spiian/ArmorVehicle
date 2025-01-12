@@ -2,13 +2,13 @@ using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace ScreensManager
+namespace ArmorVehicle
 {
     public abstract class UIScreen : MonoBehaviour
     {
         public event Action<string> Closed;
         public event Action<string> Opened;
-        protected UniTaskCompletionSource<OpenLevelType> TaskCompletionSource;
+        protected UniTaskCompletionSource<bool> TaskCompletionSource;
 
         private string _guid;
 
@@ -17,7 +17,7 @@ namespace ScreensManager
             _guid = guid;
         }
 
-        public virtual void Tick<T>(T screenContext, UniTaskCompletionSource<OpenLevelType> taskCompletionSource)
+        public virtual void Tick<T>(T screenContext, UniTaskCompletionSource<bool> taskCompletionSource)
         {
             TaskCompletionSource = taskCompletionSource;
         }

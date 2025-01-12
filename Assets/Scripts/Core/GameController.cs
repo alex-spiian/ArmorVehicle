@@ -24,8 +24,8 @@ namespace ArmorVehicle.Core
             _gameControllerConfig = gameControllerConfig;
             _levelSwitcher = levelSwitcher;
             _levelSwitcher.Initialize(_gameControllerConfig.LevelList);
-            _enemySpawner = new EnemySpawner(_gameControllerConfig.EnemySpawnerConfig, healthBarManager);
             _playerController = CreatePlayer();
+            _enemySpawner = new EnemySpawner(_gameControllerConfig.EnemySpawnerConfig, healthBarManager, _playerController.HealthHandler);
         }
         
         public void Start()

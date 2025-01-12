@@ -9,9 +9,11 @@ namespace ArmorVehicle
         private readonly EnemySpawnerConfig _enemySpawnerConfig;
         private readonly List<Enemy> _enemies = new();
         private readonly HealthBarManager _healthBarManager;
+        private readonly IHealthHandler _target;
 
-        public EnemySpawner(EnemySpawnerConfig enemySpawnerConfig, HealthBarManager healthBarManager)
+        public EnemySpawner(EnemySpawnerConfig enemySpawnerConfig, HealthBarManager healthBarManager, IHealthHandler target)
         {
+            _target = target;
             _healthBarManager = healthBarManager;
             _enemySpawnerConfig = enemySpawnerConfig;
         }
@@ -22,7 +24,7 @@ namespace ArmorVehicle
             
             var multiplierByLevel = 1 + (currentLevelNumber - 1) * _enemySpawnerConfig.EnemyIncreasePercentPerLevel;
 
-            for (int zoneNumber = 0; zoneNumber < level.Zones.Length; zoneNumber++)
+            for (var zoneNumber = 0; zoneNumber < level.Zones.Length; zoneNumber++)
             {
                 var multiplierByZone = 1 + (zoneNumber - 1) * _enemySpawnerConfig.EnemyIncreasePercentPerZone;
                 var enemyCount = Mathf.FloorToInt(_enemySpawnerConfig.MinEnemiesOnZone * (multiplierByLevel + multiplierByZone));
@@ -37,7 +39,7 @@ namespace ArmorVehicle
                 {
                     var spawnPosition = GetRandomPositionInZone(currentZone);
                     var enemy = Object.Instantiate(_enemySpawnerConfig.EnemyPrefab, spawnPosition, Quaternion.identity);
-                    enemy.Initialize(100);
+                    enemy.Initialize(100, _target);
                     _enemies.Add(enemy);
                     _healthBarManager.Spawn(enemy.Health, HealthBarType.Enemy);
                 }

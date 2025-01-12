@@ -10,6 +10,8 @@ namespace ArmorVehicle
     [RequireComponent(typeof(HealthController))]
     public class PlayerController : MonoBehaviour
     {
+        public IHealthHandler HealthHandler => _healthController;
+        
         private WeaponController _weaponController;
         private MovementController _movementController;
         private HealthController _healthController;

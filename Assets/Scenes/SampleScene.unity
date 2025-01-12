@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBarData:
   - <Type>k__BackingField: 0
-    <Prefab>k__BackingField: {fileID: 636969392186039370, guid: 04856531fffd94a7199ad78165558176,
+    <Prefab>k__BackingField: {fileID: 4128811736865484359, guid: 04856531fffd94a7199ad78165558176,
       type: 3}
   - <Type>k__BackingField: 1
     <Prefab>k__BackingField: {fileID: 636969392186039370, guid: 48939449be6204c849f831f67b2f9b59,

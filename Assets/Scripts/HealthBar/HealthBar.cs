@@ -8,19 +8,19 @@ namespace ArmorVehicle
     public class HealthBar : MonoBehaviour
     {
         [SerializeField] private Vector3 _offset;
+        [SerializeField] private bool _hideFromStart;
 
+        protected RectTransform RectTransform;
         private Slider _slider;
-        private RectTransform _rectTransform;
         private Camera _mainCamera;
         private Transform _target;
         private IHealth _health;
         private RectTransform _parentRectTransform;
-        private Vector2 _smoothedPosition;
 
         private void Awake()
         {
             _slider = GetComponent<Slider>();
-            _rectTransform = GetComponent<RectTransform>();
+            RectTransform = GetComponent<RectTransform>();
             _mainCamera = Camera.main;
         }
         
@@ -36,27 +36,43 @@ namespace ArmorVehicle
             _target = health.Owner;
             _health.HealthChanged += OnHealthChanged;
             OnHealthChanged(_health.Health);
+            
+            gameObject.SetActive(!_hideFromStart);
         }
         
         public void Reset()
         {
             _health.HealthChanged -= OnHealthChanged;
         }
-
-        private void OnHealthChanged(float health)
+        
+        protected virtual void FollowTarget()
         {
-            _slider.value = health / _health.MaxHealth;
+            var localPoint = CalculatePosition();
+            RectTransform.anchoredPosition = localPoint;
         }
         
-        private void FollowTarget()
+        protected Vector2 CalculatePosition()
         {
             var pointInScreenSpace = RectTransformUtility.WorldToScreenPoint(_mainCamera, _target.position + _offset);
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _parentRectTransform, pointInScreenSpace, null, out var localPoint);
+            return localPoint;
+        }
 
-            _smoothedPosition = Vector2.Lerp(_smoothedPosition, localPoint, Time.deltaTime * 10f);
-            _rectTransform.anchoredPosition = _smoothedPosition;
+        private void OnHealthChanged(float health)
+        {
+            HandleVisibility();
+
+            _slider.value = health / _health.MaxHealth;
+        }
+
+        private void HandleVisibility()
+        {
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
+            }
         }
     }
 }

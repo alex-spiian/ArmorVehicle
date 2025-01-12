@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: 3.8, z: 0}
+  _smoothedSpeed: 1
+  _hideFromStart: 1
 --- !u!1 &7395954228274435035
 GameObject:
   m_ObjectHideFlags: 0

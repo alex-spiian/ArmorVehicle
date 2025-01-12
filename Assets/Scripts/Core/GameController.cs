@@ -13,6 +13,7 @@ namespace ArmorVehicle.Core
         private PlayerController _playerController;
         private GameControllerConfig _gameControllerConfig;
         private IObjectResolver _container;
+        private CameraController _cameraController;
 
         [Inject]
         public void Construct(
@@ -20,8 +21,10 @@ namespace ArmorVehicle.Core
             LevelSwitcher levelSwitcher,
             HealthBarManager healthBarManager,
             ScreensManager screensManager,
+            CameraController cameraController,
             IObjectResolver container)
         {
+            _cameraController = cameraController;
             _container = container;
             _gameControllerConfig = gameControllerConfig;
             _levelSwitcher = levelSwitcher;
@@ -29,6 +32,7 @@ namespace ArmorVehicle.Core
             screensManager.Initialize();
             _levelSwitcher.Initialize(_gameControllerConfig.LevelList);
             _playerController = CreatePlayer();
+            _cameraController.Initialize(_playerController.CameraTarget);
             _enemySpawner = new EnemySpawner(_gameControllerConfig.EnemySpawnerConfig, healthBarManager, _playerController.HealthHandler);
         }
         
@@ -43,19 +47,21 @@ namespace ArmorVehicle.Core
 
             await taskCompetitionSource.Task;
             ScreensManager.CloseScreen<TutorialScreen>();
+            _cameraController.Switch(CameraType.Main);
             _playerController.StartMoving(OnLevelFinished);
         }
 
         private async void OnLevelFinished(bool isVictory)
         {
             await HandleScreensFlow(isVictory);
-
+            _cameraController.Switch(CameraType.Idle);
             _playerController.Restart();
             _enemySpawner.Spawn(_levelSwitcher.CurrentLevel, _levelSwitcher.CurrentLevelIndex);
             _playerController.Initialize(_levelSwitcher.CurrentLevel);
             
             await WaitForStart();
             ScreensManager.CloseScreen<TutorialScreen>();
+            _cameraController.Switch(CameraType.Main);
             _playerController.StartMoving(OnLevelFinished);
         }
 

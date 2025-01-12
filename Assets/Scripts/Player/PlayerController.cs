@@ -10,6 +10,7 @@ namespace ArmorVehicle
     public class PlayerController : MonoBehaviour
     {
         public IHealthHandler HealthHandler => _healthController;
+        public Transform CameraTarget => transform;
         
         private WeaponController _weaponController;
         private MovementController _movementController;

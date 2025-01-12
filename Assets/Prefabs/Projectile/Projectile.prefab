@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,7 +106,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.86
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7744988400512438172
 MonoBehaviour:
@@ -120,9 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0489c82f92240e091840ec6a6e5947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trailRenderer: {fileID: 2423691996087432343}
   _lifeTime: 5
-  _speedForce: 150
+  _speed: 150
 --- !u!96 &2423691996087432343
 TrailRenderer:
   serializedVersion: 3
@@ -259,7 +258,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2

@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cde23a498764b3baed5cd980d7fb2cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetDetectionDistance: 10
+  _targetDetectionDistance: 20
 --- !u!114 &5306838023610972818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
   _characterController: {fileID: 3704523312244837351}
   _animator: {fileID: 740915209991797745}
   _speed: 5
-  _attackDistance: 1
-  _targetDetectionDistance: 10
+  _attackDistance: 2
+  _targetDetectionDistance: 20
 --- !u!114 &8998988316737516985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 5
-  _attackDistance: 1
+  _attackDistance: 2
   _attackCooldown: 0.2
 --- !u!143 &3704523312244837351
 CharacterController:

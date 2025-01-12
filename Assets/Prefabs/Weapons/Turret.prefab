@@ -156,12 +156,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 8
-  _attackCooldown: 0.2
+  _attackCooldown: 0.4
   _rotator: {fileID: 3667452641969226797}
   _projectilePrefab: {fileID: 7744988400512438172, guid: 6470a9a49b16e426f80e3ea1a3c1e454,
     type: 3}
   _projectileAnchor: {fileID: 5458078250776142265}
-  _projectileRotation: {x: 90, y: 0, z: 0}
 --- !u!114 &3667452641969226797
 MonoBehaviour:
   m_ObjectHideFlags: 0

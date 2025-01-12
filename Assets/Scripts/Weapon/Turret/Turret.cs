@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace ArmorVehicle
 {
@@ -8,9 +7,8 @@ namespace ArmorVehicle
         [SerializeField] private TurretRotator _rotator;
         [SerializeField] private Projectile _projectilePrefab;
         [SerializeField] private Transform _projectileAnchor;
-        [SerializeField] private Vector3 _projectileRotation;
         
-        private ObjectPool<Projectile> _projectilePool;
+        private MonoBehaviourPool<Projectile> _projectilePool;
 
         public override void Initialize(IInputHandler inputHandler)
         {
@@ -23,11 +21,7 @@ namespace ArmorVehicle
         
         private void Awake()
         {
-            Quaternion rotation = Quaternion.Euler(_projectileRotation);
-            _projectilePool = new ObjectPool<Projectile>(
-                createFunc: () => Instantiate(_projectilePrefab, _projectileAnchor.position, rotation),
-                actionOnGet: t => t.gameObject.SetActive(true),
-                actionOnRelease: OnRelease);
+            _projectilePool = new MonoBehaviourPool<Projectile>(_projectilePrefab, null);
         }
         
         private void OnDestroy()
@@ -53,20 +47,15 @@ namespace ArmorVehicle
 
         private void CreateProjectile()
         {
-            var projectile = _projectilePool.Get();
+            var projectile = _projectilePool.Take();
             projectile.LifeTimeWasOver += OnProjectileLifeTimeWasOver;
             projectile.Initialize(_projectileAnchor.position, -transform.up, _damage);
         }
 
         private void OnProjectileLifeTimeWasOver(Projectile projectile)
         {
-            _projectilePool.Release(projectile);
-        }
-
-        private void OnRelease(Projectile projectile)
-        {
             projectile.LifeTimeWasOver -= OnProjectileLifeTimeWasOver;
-            projectile.gameObject.SetActive(false);
+            _projectilePool.Release(projectile);
         }
     }
 }

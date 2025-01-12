@@ -9,6 +9,12 @@ namespace ArmorVehicle
         public void Initialize(IInputHandler inputHandler)
         {
             _weapon.Initialize(inputHandler);
+            Enable(false);
+        }
+
+        public void Enable(bool isActive)
+        {
+            _weapon.Enable(isActive);
         }
     }
 }

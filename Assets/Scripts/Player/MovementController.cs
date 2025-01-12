@@ -9,14 +9,14 @@ namespace ArmorVehicle
     {
         [SerializeField] private float _speed;
     
-        private Action<bool> _levelFinishedCallBack;
+        private Action _levelFinishedCallBack;
         private SplineContainer _splineContainer;
         private Vector3 _finishPosition;
         private float _distanceAlongSpline;
         private float _splineLength;
         private bool _canMove;
 
-        public void Initialize(SplineContainer splineContainer, Vector3 finishPosition, Action<bool> levelFinishedCallBack)
+        public void Initialize(SplineContainer splineContainer, Vector3 finishPosition, Action levelFinishedCallBack)
         {
             _levelFinishedCallBack = levelFinishedCallBack;
             _finishPosition = finishPosition;
@@ -81,7 +81,7 @@ namespace ArmorVehicle
             if (Vector3.Distance(transform.position, _finishPosition) <= threshold)
             {
                 Stop();
-                _levelFinishedCallBack?.Invoke(true);
+                _levelFinishedCallBack?.Invoke();
             }
         }
     }

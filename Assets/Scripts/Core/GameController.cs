@@ -35,12 +35,12 @@ namespace ArmorVehicle.Core
             _playerController = CreatePlayer();
             _cameraController.Initialize(_playerController.CameraTarget);
             _enemySpawner = new EnemySpawner(_gameControllerConfig.EnemySpawnerConfig, healthBarManager, _playerController.HealthHandler);
-            _playerController.Died += OnLevelFinished;
+            _playerController.LevelFinished += OnLevelFinished;
         }
         
         public void Dispose()
         {
-            _playerController.Died -= OnLevelFinished;
+            _playerController.LevelFinished -= OnLevelFinished;
         }
         
         public async void Start()
@@ -55,7 +55,7 @@ namespace ArmorVehicle.Core
             await taskCompetitionSource.Task;
             ScreensManager.CloseScreen<TutorialScreen>();
             _cameraController.Switch(CameraType.Main);
-            _playerController.StartMoving(OnLevelFinished);
+            _playerController.StartMoving();
         }
 
         private async void OnLevelFinished(bool isVictory)
@@ -69,7 +69,7 @@ namespace ArmorVehicle.Core
             await WaitForStart();
             ScreensManager.CloseScreen<TutorialScreen>();
             _cameraController.Switch(CameraType.Main);
-            _playerController.StartMoving(OnLevelFinished);
+            _playerController.StartMoving();
         }
 
         private async UniTask HandleScreensFlow(bool isVictory)

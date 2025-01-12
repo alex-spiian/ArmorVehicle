@@ -16,6 +16,11 @@ namespace ArmorVehicle
             InputHandler = inputHandler;
         }
         
+        public void Enable(bool isActive)
+        {
+            CanAttack = isActive;
+        }
+        
         protected virtual void Update()
         {
             _currentCooldownTime += Time.deltaTime;

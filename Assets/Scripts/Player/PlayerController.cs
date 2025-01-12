@@ -9,9 +9,11 @@ namespace ArmorVehicle
     [RequireComponent(typeof(HealthController))]
     public class PlayerController : MonoBehaviour
     {
-        public Action<bool> Died;
+        public Action<bool> LevelFinished;
         public IHealthHandler HealthHandler => _healthController;
-        public Transform CameraTarget => transform;
+        
+        [field:SerializeField]
+        public Transform CameraTarget { get; private set; }
         
         private WeaponController _weaponController;
         private MovementController _movementController;
@@ -19,6 +21,7 @@ namespace ArmorVehicle
         private IInputHandler _inputHandler;
         private HealthBarManager _healthBarManager;
         private Level _currentLevel;
+        private Action<bool> _levelFinishedCallBack;
 
         private void Awake()
         {
@@ -46,24 +49,32 @@ namespace ArmorVehicle
             transform.position = _currentLevel.StartPoint.position;
             _weaponController.Initialize(_inputHandler);
             _healthController.Initialize(100);
-            _healthBarManager.Spawn(_healthController, HealthBarType.Player);
         }
 
-        public void StartMoving(Action<bool> levelFinishedCallBack)
+        public void StartMoving()
         {
-            _movementController.Initialize(_currentLevel.SplineContainer, _currentLevel.EndPoint.position, levelFinishedCallBack);
+            _movementController.Initialize(_currentLevel.SplineContainer, _currentLevel.EndPoint.position, OnWin);
+            _weaponController.Enable(true);
+            _healthBarManager.Spawn(_healthController, HealthBarType.Player);
+        }
+        
+        private void OnWin()
+        {
+            Restart();
+            LevelFinished?.Invoke(true);
+        }
+
+        private void OnDied()
+        {
+            Restart();
+            LevelFinished?.Invoke(false);
         }
 
         public void Restart()
         {
             _healthBarManager.Remove(_healthController, HealthBarType.Player);
             _movementController.Stop();
-        }
-
-        private void OnDied()
-        {
-            Restart();
-            Died?.Invoke(false);
+            _weaponController.Enable(false);
         }
     }
 }

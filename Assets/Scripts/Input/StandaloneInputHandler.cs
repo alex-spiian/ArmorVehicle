@@ -4,16 +4,16 @@ using VContainer.Unity;
 
 namespace ArmorVehicle
 {
-    public class InputHandler : ITickable, IInputHandler
+    public class StandaloneInputHandler : ITickable, IInputHandler
     {
-        public event Action MouseButtonDown;
+        public event Action Clicked;
         public event Action<float> Rotate;
         
         public void Tick()
         {
             if (Input.GetMouseButton(0))
             {
-                MouseButtonDown?.Invoke();
+                Clicked?.Invoke();
                 Rotate?.Invoke(Input.GetAxis("Mouse X"));
             }
         }

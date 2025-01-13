@@ -20,7 +20,7 @@ namespace ArmorVehicle
         {
             base.Initialize(inputHandler, damage, attackCooldown);
             
-            InputHandler.MouseButtonDown += TryAttack;
+            InputHandler.Clicked += TryAttack;
             InputHandler.Rotate += _rotator.Rotate;
             CanAttack = true;
         }
@@ -33,7 +33,7 @@ namespace ArmorVehicle
         
         private void OnDestroy()
         {
-            InputHandler.MouseButtonDown -= TryAttack;
+            InputHandler.Clicked -= TryAttack;
             InputHandler.Rotate -= _rotator.Rotate;
         }
 

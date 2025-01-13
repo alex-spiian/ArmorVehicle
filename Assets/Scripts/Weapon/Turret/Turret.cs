@@ -51,7 +51,8 @@ namespace ArmorVehicle
 
         private void ApplyKnockBack(Action onComplete)
         {
-            _knockBackTarget = _initialPosition + _knockBackOffset;
+            var knockBackDirection = transform.TransformDirection(-Vector3.forward) * _knockBackOffset.magnitude;
+            _knockBackTarget = _initialPosition + knockBackDirection;
 
             transform.DOLocalMove(_knockBackTarget, _knockBackDuration / 2)
                 .OnComplete(() =>

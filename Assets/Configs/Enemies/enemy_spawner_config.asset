@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 105499c09fbf4149963c5aea4900e07f, type: 3}
-  m_Name: EnemySpawnerConfig
+  m_Name: enemy_spawner_config
   m_EditorClassIdentifier: 
   <EnemyPrefab>k__BackingField: {fileID: 8794791314363615053, guid: f952a61ddcb564de0afea2ed8870b2f8,
     type: 3}

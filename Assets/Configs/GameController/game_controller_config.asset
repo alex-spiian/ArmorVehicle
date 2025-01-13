@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae488c6144714faaa015e0df39d40670, type: 3}
-  m_Name: GameControllerConfig
+  m_Name: game_controller_config
   m_EditorClassIdentifier: 
   <PlayerControllerPrefab>k__BackingField: {fileID: 4079137805395927357, guid: bfe358b7c671a44099aa7dcc44be1a43,
     type: 3}

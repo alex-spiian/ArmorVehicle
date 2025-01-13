@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd53fa7bc174b90aa567ed6ed727463, type: 3}
-  m_Name: PlayerConfig
+  m_Script: {fileID: 11500000, guid: cea68486ca7f47949a212ce966ac40fc, type: 3}
+  m_Name: enemy_config
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 60
-  <Damage>k__BackingField: 8
+  <MaxHealth>k__BackingField: 15
+  <Damage>k__BackingField: 3
   <AttackCooldown>k__BackingField: 0.3
   <Speed>k__BackingField: 10
+  <AttackDistance>k__BackingField: 2
+  <TargetDetectionDistance>k__BackingField: 30

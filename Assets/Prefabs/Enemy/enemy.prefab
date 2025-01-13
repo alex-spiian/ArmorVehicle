@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cde23a498764b3baed5cd980d7fb2cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetDetectionDistance: 20
 --- !u!114 &5306838023610972818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,9 +111,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 3704523312244837351}
   _animator: {fileID: 740915209991797745}
-  _speed: 5
-  _attackDistance: 2
-  _targetDetectionDistance: 20
 --- !u!114 &8998988316737516985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,9 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb982907cf34bc496ae97111073a643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
-  _attackDistance: 2
-  _attackCooldown: 0.2
 --- !u!114 &-9008565270703384009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,12 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14228e1764f430f9a6d37f7224a2c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectsData:
-  - <Type>k__BackingField: 1
-    <Effect>k__BackingField: {fileID: 5601036089067188822, guid: 924e772d99fea934f8c7dff7c622e78a,
-      type: 3}
-  _flashDuration: 0.1
+  _deathEffectPrefab: {fileID: 5601036089067188822, guid: 924e772d99fea934f8c7dff7c622e78a,
+    type: 3}
   _renderer: {fileID: 4488755829730894546}
+  _flashDuration: 0.1
 --- !u!143 &3704523312244837351
 CharacterController:
   m_ObjectHideFlags: 0

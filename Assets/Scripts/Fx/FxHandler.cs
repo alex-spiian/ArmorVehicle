@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace ArmorVehicle
@@ -31,10 +31,11 @@ namespace ArmorVehicle
             _healthHandler.Damaged -= OnDamaged;
         }
         
-        private void Flash()
+        private async void Flash()
         {
-            StopAllCoroutines();
-            StartCoroutine(FlashCoroutine());
+            materialInstance.SetFloat(_flashIntensity, 1);
+            await UniTask.WaitForSeconds(_flashDuration);
+            materialInstance.SetFloat(_flashIntensity, 0);
         }
         
         public void Reset()
@@ -42,14 +43,7 @@ namespace ArmorVehicle
             materialInstance.SetFloat(_flashIntensity, 0);
         }
 
-        private IEnumerator FlashCoroutine()
-        {
-            materialInstance.SetFloat(_flashIntensity, 1);
-            yield return new WaitForSeconds(_flashDuration);
-            materialInstance.SetFloat(_flashIntensity, 0);
-        }
-        
-        
+
         private void OnDied()
         {
             Reset();

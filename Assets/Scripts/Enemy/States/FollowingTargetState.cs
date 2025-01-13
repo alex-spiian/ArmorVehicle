@@ -21,6 +21,11 @@ namespace ArmorVehicle
             _health = GetComponent<IHealth>();
             _health.Died += OnDied;
         }
+        
+        private void OnDestroy()
+        {
+            _health.Died -= OnDied;
+        }
 
         private void Update()
         {
@@ -83,11 +88,6 @@ namespace ArmorVehicle
         {
             _animator.SetBool(IsMoving, false);
             _isActive = false;
-        }
-
-        private void OnDestroy()
-        {
-            _health.Died -= OnDied;
         }
     }
 }

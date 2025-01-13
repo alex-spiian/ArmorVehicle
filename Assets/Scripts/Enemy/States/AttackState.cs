@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ArmorVehicle
@@ -9,9 +10,15 @@ namespace ArmorVehicle
         [SerializeField] private float _attackCooldown;
 
         private IHealthHandler _target;
+        private IHealthHandler _healthHandler;
         private StateMachine _stateMachine;
         private bool _isActive;
         private float _currentCooldownTime;
+
+        private void Awake()
+        {
+            _healthHandler = GetComponent<IHealthHandler>();
+        }
 
         private void Update()
         {
@@ -52,6 +59,12 @@ namespace ArmorVehicle
         private void Attack()
         {
             _target.TakeDamage(_damage);
+            KillItself();
+        }
+
+        private void KillItself()
+        {
+            _healthHandler.TakeDamage(float.MaxValue);
         }
 
         private void EnterFollowingTargetState()

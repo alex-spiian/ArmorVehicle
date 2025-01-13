@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using ArmorVehicle.Ui;
 using Cysharp.Threading.Tasks;
 using VContainer;
@@ -96,7 +95,7 @@ namespace ArmorVehicle.Core
             ScreensManager.CloseAllScreens();
         }
 
-        private async Task WaitForStart()
+        private async UniTask WaitForStart()
         {
             var taskCompetitionSource = new UniTaskCompletionSource<bool>();
             ScreensManager.OpenScreenAsync<TutorialScreen, TutorialScreenContext>(new TutorialScreenContext(), 

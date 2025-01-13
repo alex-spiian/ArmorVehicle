@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyConfig
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 15
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 3
   <AttackCooldown>k__BackingField: 0.3
   <Speed>k__BackingField: 10
   <AttackDistance>k__BackingField: 2

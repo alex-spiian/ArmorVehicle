@@ -22,6 +22,6 @@ This is a game prototype built in Unity. It includes mechanics for player moveme
 ---
 
 ## How to Run the Project
-1. Open the project in Unity (version `2022.3.40f1` or higher).  
+1. Open the project in Unity (version `2022.3.40f1`).  
 2. Load the `game`.  
 3. Play the game to test the prototype.  

@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace ArmorVehicle
@@ -7,8 +9,12 @@ namespace ArmorVehicle
         [SerializeField] private TurretRotator _rotator;
         [SerializeField] private Projectile _projectilePrefab;
         [SerializeField] private Transform _projectileAnchor;
-        
+        [SerializeField] private Vector3 _knockBackOffset;
+        [SerializeField] private float _knockBackDuration;
+
         private MonoBehaviourPool<Projectile> _projectilePool;
+        private Vector3 _initialPosition;
+        private Vector3 _knockBackTarget;
 
         public override void Initialize(IInputHandler inputHandler, float damage, float attackCooldown)
         {
@@ -22,6 +28,7 @@ namespace ArmorVehicle
         private void Awake()
         {
             _projectilePool = new MonoBehaviourPool<Projectile>(_projectilePrefab, null);
+            _initialPosition = transform.localPosition;
         }
         
         private void OnDestroy()
@@ -32,14 +39,26 @@ namespace ArmorVehicle
 
         protected override void Attack()
         {
-            CreateProjectile();
+            ApplyKnockBack(CreateProjectile);
         }
 
         private void CreateProjectile()
         {
             var projectile = _projectilePool.Take();
             projectile.LifeTimeWasOver += OnProjectileLifeTimeWasOver;
-            projectile.Initialize(_projectileAnchor.position, -transform.up, _damage);
+            projectile.Initialize(_projectileAnchor.position, transform.forward, _damage);
+        }
+
+        private void ApplyKnockBack(Action onComplete)
+        {
+            _knockBackTarget = _initialPosition + _knockBackOffset;
+
+            transform.DOLocalMove(_knockBackTarget, _knockBackDuration / 2)
+                .OnComplete(() =>
+                {
+                    onComplete?.Invoke();
+                    transform.DOLocalMove(_initialPosition, _knockBackDuration / 2);
+                });
         }
 
         private void OnProjectileLifeTimeWasOver(Projectile projectile)

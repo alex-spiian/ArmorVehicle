@@ -121,15 +121,7 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5458078250776142265}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d5c108460d3a47a18b41c7cb89f1934,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6185194841803282013}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d5c108460d3a47a18b41c7cb89f1934,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3667452641969226797}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d5c108460d3a47a18b41c7cb89f1934, type: 3}
 --- !u!4 &8493345214040794291 stripped
 Transform:
@@ -137,40 +129,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8238443838152573784}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9121404240891887113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d5c108460d3a47a18b41c7cb89f1934,
-    type: 3}
-  m_PrefabInstance: {fileID: 8238443838152573784}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6185194841803282013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9121404240891887113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 775a949b6fa3d49498d30a91a218883d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 8
-  _attackCooldown: 0.4
-  _rotator: {fileID: 3667452641969226797}
-  _projectilePrefab: {fileID: 7744988400512438172, guid: 6470a9a49b16e426f80e3ea1a3c1e454,
-    type: 3}
-  _projectileAnchor: {fileID: 5458078250776142265}
---- !u!114 &3667452641969226797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9121404240891887113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1205895a6bcb14d50ac7f3b07aa19b45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5

@@ -12,8 +12,7 @@ namespace ArmorVehicle
         public Action<bool> LevelFinished;
         public IHealthHandler HealthHandler => _healthController;
         
-        [field:SerializeField]
-        public Transform CameraTarget { get; private set; }
+        [field:SerializeField] public Transform CameraTarget { get; private set; }
         
         private WeaponController _weaponController;
         private MovementController _movementController;
@@ -22,6 +21,7 @@ namespace ArmorVehicle
         private HealthBarManager _healthBarManager;
         private Level _currentLevel;
         private Action<bool> _levelFinishedCallBack;
+        private PlayerConfig _playerConfig;
 
         private void Awake()
         {
@@ -43,17 +43,18 @@ namespace ArmorVehicle
             _inputHandler = inputHandler;
         }
 
-        public void Initialize(Level level)
+        public void Initialize(Level level, PlayerConfig playerConfig)
         {
+            _playerConfig = playerConfig;
             _currentLevel = level;
             transform.position = _currentLevel.StartPoint.position;
-            _weaponController.Initialize(_inputHandler);
-            _healthController.Initialize(100);
+            _weaponController.Initialize(_inputHandler, _playerConfig.Damage, _playerConfig.AttackCooldown);
+            _healthController.Initialize(_playerConfig.MaxHealth);
         }
 
         public void StartMoving()
         {
-            _movementController.Initialize(_currentLevel.SplineContainer, _currentLevel.EndPoint.position, OnWin);
+            _movementController.Initialize(_playerConfig.Speed, _currentLevel.SplineContainer, _currentLevel.EndPoint.position, OnWin);
             _weaponController.Enable(true);
             _healthBarManager.Spawn(_healthController, HealthBarType.Player);
         }

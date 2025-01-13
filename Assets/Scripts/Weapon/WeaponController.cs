@@ -6,9 +6,9 @@ namespace ArmorVehicle
     {
         [SerializeField] private Weapon _weapon;
 
-        public void Initialize(IInputHandler inputHandler)
+        public void Initialize(IInputHandler inputHandler, float damage, float attackCooldown)
         {
-            _weapon.Initialize(inputHandler);
+            _weapon.Initialize(inputHandler, damage, attackCooldown);
             Enable(false);
         }
 

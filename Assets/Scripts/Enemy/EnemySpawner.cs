@@ -42,7 +42,7 @@ namespace ArmorVehicle
                     var spawnPosition = GetRandomPositionInZone(currentZone);
                     var enemy = _enemyPool.Take();
                     enemy.transform.position = spawnPosition;
-                    enemy.Initialize(20, _target, OnEnemyDied);
+                    enemy.Initialize(_enemySpawnerConfig.EnemyConfig, _target, OnEnemyDied);
                     _enemies.Add(enemy);
                     _healthBarManager.Spawn(enemy.Health, HealthBarType.Enemy);
                 }

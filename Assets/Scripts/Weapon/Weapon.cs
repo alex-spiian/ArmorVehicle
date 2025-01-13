@@ -4,16 +4,17 @@ namespace ArmorVehicle
 {
     public abstract class Weapon : MonoBehaviour
     {
-        [SerializeField] protected float _damage;
-        [SerializeField] private float _attackCooldown;
-
+        protected float _damage;
+        private float _attackCooldown;
         protected IInputHandler InputHandler;
         protected bool CanAttack;
         private float _currentCooldownTime;
 
-        public virtual void Initialize(IInputHandler inputHandler)
+        public virtual void Initialize(IInputHandler inputHandler, float damage, float attackCooldown)
         {
             InputHandler = inputHandler;
+            _damage = damage;
+            _attackCooldown = attackCooldown;
         }
         
         public void Enable(bool isActive)

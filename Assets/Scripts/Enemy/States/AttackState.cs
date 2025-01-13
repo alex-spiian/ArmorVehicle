@@ -1,19 +1,19 @@
-using System;
 using UnityEngine;
 
 namespace ArmorVehicle
 {
-    public class AttackState : MonoBehaviour, IPayLoadedState<IHealthHandler>
+    public class AttackState : MonoBehaviour, IPayLoadedState<EnemyAiData>
     {
-        [SerializeField] private float _damage;
-        [SerializeField] private float _attackDistance;
-        [SerializeField] private float _attackCooldown;
-
+        private float _damage;
+        private float _attackDistance;
+        private float _attackCooldown;
+        
         private IHealthHandler _target;
         private IHealthHandler _healthHandler;
         private StateMachine _stateMachine;
         private bool _isActive;
         private float _currentCooldownTime;
+        private EnemyAiData _enemyAiData;
 
         private void Awake()
         {
@@ -39,9 +39,14 @@ namespace ArmorVehicle
             _stateMachine = stateMachine;
         }
 
-        public void OnEnter(IHealthHandler target)
+        public void OnEnter(EnemyAiData enemyAiData)
         {
-            _target = target;
+            _enemyAiData = enemyAiData;
+            _target = _enemyAiData.Target;
+            _damage = _enemyAiData.EnemyConfig.Damage;
+            _attackDistance = _enemyAiData.EnemyConfig.AttackDistance;
+            _attackCooldown = _enemyAiData.EnemyConfig.AttackCooldown;
+            
             _isActive = true;
         }
         
@@ -70,7 +75,7 @@ namespace ArmorVehicle
         private void EnterFollowingTargetState()
         {
             _isActive = false;
-            _stateMachine.Enter<FollowingTargetState, IHealthHandler>(_target);
+            _stateMachine.Enter<FollowingTargetState, EnemyAiData>(_enemyAiData);
         }
     }
 }

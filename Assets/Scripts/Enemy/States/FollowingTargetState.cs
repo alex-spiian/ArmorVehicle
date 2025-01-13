@@ -2,18 +2,19 @@ using UnityEngine;
 
 namespace ArmorVehicle
 {
-    public class FollowingTargetState : MonoBehaviour, IPayLoadedState<IHealthHandler>
+    public class FollowingTargetState : MonoBehaviour, IPayLoadedState<EnemyAiData>
     {
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private Animator _animator;
-        [SerializeField] private float _speed;
-        [SerializeField] private float _attackDistance;
-        [SerializeField] private float _targetDetectionDistance;
-
+        
+        private float _speed;
+        private float _attackDistance;
+        private float _targetDetectionDistance;
         private bool _isActive;
         private IHealthHandler _target;
         private StateMachine _stateMachine;
         private IHealth _health;
+        private EnemyAiData _enemyAiData;
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
 
         private void Awake()
@@ -58,9 +59,14 @@ namespace ArmorVehicle
             _stateMachine = stateMachine;
         }
 
-        public void OnEnter(IHealthHandler target)
+        public void OnEnter(EnemyAiData enemyAiData)
         {
-            _target = target;
+            _enemyAiData = enemyAiData;
+            _target = _enemyAiData.Target;
+            _speed = _enemyAiData.EnemyConfig.Speed;
+            _attackDistance = _enemyAiData.EnemyConfig.AttackDistance;
+            _targetDetectionDistance = _enemyAiData.EnemyConfig.TargetDetectionDistance;
+            
             _isActive = true;
         }
 
@@ -75,13 +81,13 @@ namespace ArmorVehicle
         private void EnterAttackState()
         {
             _isActive = false;
-            _stateMachine.Enter<AttackState, IHealthHandler>(_target);
+            _stateMachine.Enter<AttackState, EnemyAiData>(_enemyAiData);
         }
         
         private void EnterIdleState()
         {
             _isActive = false;
-            _stateMachine.Enter<IdleState, IHealthHandler>(_target);
+            _stateMachine.Enter<IdleState, EnemyAiData>(_enemyAiData);
         }
 
         private void OnDied()

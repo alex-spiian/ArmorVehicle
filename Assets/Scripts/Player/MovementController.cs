@@ -7,20 +7,20 @@ namespace ArmorVehicle
 {
     public class MovementController : MonoBehaviour
     {
-        [SerializeField] private float _speed;
-    
         private Action _levelFinishedCallBack;
         private SplineContainer _splineContainer;
         private Vector3 _finishPosition;
+        private float _speed;
         private float _distanceAlongSpline;
         private float _splineLength;
         private bool _canMove;
 
-        public void Initialize(SplineContainer splineContainer, Vector3 finishPosition, Action levelFinishedCallBack)
+        public void Initialize(float speed, SplineContainer splineContainer, Vector3 finishPosition, Action levelFinishedCallBack)
         {
             _levelFinishedCallBack = levelFinishedCallBack;
             _finishPosition = finishPosition;
             _splineContainer = splineContainer;
+            _speed = speed;
             _splineLength = _splineContainer.CalculateLength();
 
             Reset();

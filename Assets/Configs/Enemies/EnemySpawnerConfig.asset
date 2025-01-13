@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EnemyPrefab>k__BackingField: {fileID: 8794791314363615053, guid: f952a61ddcb564de0afea2ed8870b2f8,
     type: 3}
+  <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 9236f26688e0441e0b8c4db08d67f630,
+    type: 2}
   <MinEnemiesOnZone>k__BackingField: 5
   <EnemyIncreasePercentPerLevel>k__BackingField: 0.1
   <EnemyIncreasePercentPerZone>k__BackingField: 0.3

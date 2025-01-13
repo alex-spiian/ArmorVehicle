@@ -49,7 +49,7 @@ namespace ArmorVehicle.Core
             
             _levelSwitcher.Next();
             _enemySpawner.Spawn(_levelSwitcher.CurrentLevel, _levelSwitcher.CurrentLevelIndex);
-            _playerController.Initialize(_levelSwitcher.CurrentLevel);
+            _playerController.Initialize(_levelSwitcher.CurrentLevel, _gameControllerConfig.PlayerConfig);
 
             await taskCompetitionSource.Task;
             ScreensManager.CloseScreen<TutorialScreen>();
@@ -63,7 +63,7 @@ namespace ArmorVehicle.Core
             _cameraController.Switch(CameraType.Idle);
             _playerController.Restart();
             _enemySpawner.Spawn(_levelSwitcher.CurrentLevel, _levelSwitcher.CurrentLevelIndex);
-            _playerController.Initialize(_levelSwitcher.CurrentLevel);
+            _playerController.Initialize(_levelSwitcher.CurrentLevel, _gameControllerConfig.PlayerConfig);
             
             await WaitForStart();
             ScreensManager.CloseScreen<TutorialScreen>();

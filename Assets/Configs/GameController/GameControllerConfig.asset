@@ -18,3 +18,5 @@ MonoBehaviour:
     type: 2}
   <EnemySpawnerConfig>k__BackingField: {fileID: 11400000, guid: 2d998ae422e2f4f7eb2ebf95bc1000d7,
     type: 2}
+  <PlayerConfig>k__BackingField: {fileID: 11400000, guid: 8a0fc81a0eea24826b6606e8f6999f49,
+    type: 2}

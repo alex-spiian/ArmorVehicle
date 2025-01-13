@@ -2,17 +2,20 @@ using UnityEngine;
 
 namespace ArmorVehicle
 {
-    public class IdleState : MonoBehaviour, IPayLoadedState<IHealthHandler>
+    public class IdleState : MonoBehaviour, IPayLoadedState<EnemyAiData>
     {
-        [SerializeField] private float _targetDetectionDistance;
-        
+        private float _targetDetectionDistance;
         private StateMachine _stateMachine;
         private IHealthHandler _target;
         private bool _isActive;
+        private EnemyAiData _enemyAiData;
 
-        public void OnEnter(IHealthHandler target)
+        public void OnEnter(EnemyAiData enemyAiData)
         {
-            _target = target;
+            _enemyAiData = enemyAiData;
+            _target = _enemyAiData.Target;
+            _targetDetectionDistance = _enemyAiData.EnemyConfig.TargetDetectionDistance;
+            
             _isActive = true;
         }
 
@@ -36,7 +39,7 @@ namespace ArmorVehicle
         private void EnterFollowingTargetState()
         {
             _isActive = false;
-            _stateMachine.Enter<FollowingTargetState, IHealthHandler>(_target);
+            _stateMachine.Enter<FollowingTargetState, EnemyAiData>(_enemyAiData);
         }
     }
 }

@@ -10,9 +10,9 @@ namespace ArmorVehicle
         
         private MonoBehaviourPool<Projectile> _projectilePool;
 
-        public override void Initialize(IInputHandler inputHandler)
+        public override void Initialize(IInputHandler inputHandler, float damage, float attackCooldown)
         {
-            base.Initialize(inputHandler);
+            base.Initialize(inputHandler, damage, attackCooldown);
             
             InputHandler.MouseButtonDown += TryAttack;
             InputHandler.Rotate += _rotator.Rotate;

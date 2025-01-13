@@ -16,11 +16,11 @@ namespace ArmorVehicle
             _healthController = GetComponent<HealthController>();
         }
 
-        public void Initialize(float maxHealth, IHealthHandler target, Action<Enemy> onEnemyDiedCallBack)
+        public void Initialize(EnemyConfig enemyConfig, IHealthHandler target, Action<Enemy> onEnemyDiedCallBack)
         {
             _onEnemyDiedCallBack = onEnemyDiedCallBack;
-            _healthController.Initialize(maxHealth);
-            CreateStateMachine(target);
+            _healthController.Initialize(enemyConfig.MaxHealth);
+            CreateStateMachine(enemyConfig, target);
 
             Health.Died += OnDied;
         }
@@ -35,7 +35,7 @@ namespace ArmorVehicle
             _healthController.TakeDamage(float.MaxValue);
         }
 
-        private void CreateStateMachine(IHealthHandler target)
+        private void CreateStateMachine(EnemyConfig enemyConfig, IHealthHandler target)
         {
             if (_stateMachine == null)
             {
@@ -48,8 +48,10 @@ namespace ArmorVehicle
             
                 _stateMachine.Initialize();
             }
+
+            var enemyAiData = new EnemyAiData(enemyConfig, target);
             
-            _stateMachine.Enter<IdleState, IHealthHandler>(target);
+            _stateMachine.Enter<IdleState, EnemyAiData>(enemyAiData);
         }
 
         private void OnDied()

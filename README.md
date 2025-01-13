@@ -5,10 +5,11 @@ This is a game prototype built in Unity, featuring a clean and modular codebase 
 - Player Movement: Responsive control system for smooth player navigation.
 - Enemy AI: Advanced AI for enemy behavior and interaction with the player.
 - Object Pooling: Efficient management of objects like enemies or projectiles using the object pool pattern to reduce memory overhead and improve performance.
-- State Machine: Utilized to manage different states of enemy and player behaviors, ensuring modular and scalable logic.
+- State Machine: Utilized to manage different states of enemy behaviors, ensuring modular and scalable logic.
 - Level Switching: A system to switch between different game levels seamlessly.
 - Screens Management: Handling of various game screens (like menus, HUDs, etc.) in a clean manner.
 - Visual Effects: Handling of various VFX like damage flashes and knockback effects.
+- Minimal Physics: The game relies on minimal use of Unity’s physics engine, focusing on efficient scripting and logical interactions instead.
 
 All systems are implemented with solid object-oriented principles, ensuring maintainable, extensible, and optimized code.
 

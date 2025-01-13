@@ -16,6 +16,6 @@ MonoBehaviour:
     type: 3}
   <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 9236f26688e0441e0b8c4db08d67f630,
     type: 2}
-  <MinEnemiesOnZone>k__BackingField: 5
+  <MinEnemiesOnZone>k__BackingField: 6
   <EnemyIncreasePercentPerLevel>k__BackingField: 0.1
   <EnemyIncreasePercentPerZone>k__BackingField: 0.3

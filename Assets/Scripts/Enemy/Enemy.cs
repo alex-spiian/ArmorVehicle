@@ -4,20 +4,19 @@ using UnityEngine;
 namespace ArmorVehicle
 {
     [RequireComponent(typeof(HealthController))]
-    [RequireComponent(typeof(FxHandler))]
+    [RequireComponent(typeof(EnemyFxHandler))]
     public class Enemy : MonoBehaviour
     {
-
         public IHealth Health => _healthController;
         private Action<Enemy> _onEnemyDiedCallBack;
         private HealthController _healthController;
         private StateMachine _stateMachine;
-        private FxHandler _fxHandler;
+        private EnemyFxHandler _enemyFxHandler;
 
         private void Awake()
         {
             _healthController = GetComponent<HealthController>();
-            _fxHandler = GetComponent<FxHandler>();
+            _enemyFxHandler = GetComponent<EnemyFxHandler>();
         }
 
         public void Initialize(EnemyConfig enemyConfig, IHealthHandler target, Action<Enemy> onEnemyDiedCallBack)
@@ -27,7 +26,7 @@ namespace ArmorVehicle
             CreateStateMachine(enemyConfig, target);
 
             Health.Died += OnDied;
-            _fxHandler.Reset();
+            _enemyFxHandler.Reset();
         }
 
         public void Reset()

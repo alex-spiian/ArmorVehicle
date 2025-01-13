@@ -7,7 +7,7 @@ namespace ArmorVehicle
     [RequireComponent(typeof(MovementController))]
     [RequireComponent(typeof(WeaponController))]
     [RequireComponent(typeof(HealthController))]
-    [RequireComponent(typeof(FxHandler))]
+    [RequireComponent(typeof(PlayerFxHandler))]
     public class PlayerController : MonoBehaviour
     {
         public Action<bool> LevelFinished;
@@ -20,7 +20,7 @@ namespace ArmorVehicle
         private HealthController _healthController;
         private IInputHandler _inputHandler;
         private HealthBarManager _healthBarManager;
-        private FxHandler _fxHandler;
+        private PlayerFxHandler _fxHandler;
         private Level _currentLevel;
         private Action<bool> _levelFinishedCallBack;
         private PlayerConfig _playerConfig;
@@ -30,7 +30,7 @@ namespace ArmorVehicle
             _movementController = GetComponent<MovementController>();
             _weaponController = GetComponent<WeaponController>();
             _healthController = GetComponent<HealthController>();
-            _fxHandler = GetComponent<FxHandler>();
+            _fxHandler = GetComponent<PlayerFxHandler>();
             _healthController.Died += OnDied;
         }
 
